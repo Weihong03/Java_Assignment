@@ -32,7 +32,7 @@ public class ModifyWorkerProfile extends javax.swing.JFrame {
     public static String PhoneNumber;
     public static String Role;
 
-    private static final String BOOKING_FILE_PATH = "D:/MyFirstJavaProject/src/main/java/Officer_Salesperson.txt";
+    private static final String BOOKING_FILE_PATH = "D:\\NetBeansProjects\\Java_Assignment\\src\\main\\java\\furniture_sale_ordering_management_system\\Officer_Salesperson.txt";
 
 
     /**
