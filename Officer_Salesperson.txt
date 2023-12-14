@@ -1,0 +1,2 @@
+S001, weihongooi, Weihong123, Ooi Wei Hong, 20, TP065329@mail.apu.edu.my, 0122723624, SalesPerson
+O001, leeboonjie, Boonjie123, Lee Boon Jie, 40, TP065421@mail.apu.edu.my, 0129984402, Officer
