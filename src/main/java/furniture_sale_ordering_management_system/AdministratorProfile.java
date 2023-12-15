@@ -17,13 +17,15 @@ import javax.swing.JOptionPane;
  *
  * @author Acer
  */
-public class Administrator extends javax.swing.JFrame {
+public class AdministratorProfile extends javax.swing.JFrame {
+
 
     /**
      * Creates new form Administrator
      */
-    public Administrator() {
+    public AdministratorProfile() {
         initComponents();
+
     }
 
     /**
@@ -192,6 +194,8 @@ public class Administrator extends javax.swing.JFrame {
 
     // Read the existing content from the text file
     String filePath = "D:/MyFirstJavaProject/src/main/java/Administrator.txt";
+    
+
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
         StringBuilder content = new StringBuilder();
         String line;
@@ -208,7 +212,7 @@ public class Administrator extends javax.swing.JFrame {
         updateContent(content, "Username :", username);
         updateContent(content, "Password :", password);
         updateContent(content, "Full Name :", fullName);
-        updateContent(content, "Age :", age);
+        updateContent(content, "Age :", String.valueOf(age));
         updateContent(content, "Email :", email);
         updateContent(content, "Phone Number :", phoneNumber);
         updateContent(content, "Role :", role);
@@ -226,7 +230,7 @@ public class Administrator extends javax.swing.JFrame {
     }
 }
 
-private void updateContent(StringBuilder content, String label, String value) {
+    private void updateContent(StringBuilder content, String label, String value) {
     int startIndex = content.indexOf(label);
     if (startIndex != -1) {
         int endIndex = content.indexOf(label) + label.length();
@@ -253,20 +257,21 @@ private void updateContent(StringBuilder content, String label, String value) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Administrator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Administrator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Administrator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Administrator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Administrator().setVisible(true);
+                new AdministratorProfile().setVisible(true);
             }
         });
     }

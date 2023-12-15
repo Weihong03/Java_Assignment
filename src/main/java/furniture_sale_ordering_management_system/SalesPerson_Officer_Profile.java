@@ -10,12 +10,12 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author Wei Hong
  */
-public class Profile extends javax.swing.JFrame {
+public class SalesPerson_Officer_Profile extends javax.swing.JFrame {
 
     /**
      * Creates new form Profile
      */
-    public Profile() {
+    public SalesPerson_Officer_Profile() {
         initComponents();
         // For Age JComboBox
         jComboBox_age.setModel(new DefaultComboBoxModel<>(generateAgeOptions()));
@@ -231,20 +231,21 @@ public class Profile extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesPerson_Officer_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesPerson_Officer_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesPerson_Officer_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalesPerson_Officer_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Profile().setVisible(true);
+                new SalesPerson_Officer_Profile().setVisible(true);
             }
         });
     }
