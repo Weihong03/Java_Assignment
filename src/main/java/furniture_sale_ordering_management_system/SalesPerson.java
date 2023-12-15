@@ -196,10 +196,15 @@ public class SalesPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_FullNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    String id = jTextField_ID.getText();
     String username = jTextField_Username.getText();
     String password = jTextField_Password.getText();
     String fullName = jTextField_FullName.getText();
+    String ageString = jTextField_Age.getText();
+    int age = Integer.parseInt(ageString);
     String email = jTextField_Email.getText();
+    String phoneNumber = jTextField_PhoneNumber.getText();
+    String role = jTextField_Role.getText();
 
     // Read the existing content from the text file
     String filePath = "D:/MyFirstJavaProject/src/main/java/Officer_Salesperson.txt";
@@ -215,10 +220,14 @@ public class SalesPerson extends javax.swing.JFrame {
 
 
         // Update the information in the content
+        updateContent(content, "ID :", id);
         updateContent(content, "Username :", username);
         updateContent(content, "Password :", password);
         updateContent(content, "Full Name :", fullName);
+        updateContent(content, "Age :", String.valueOf(age));
         updateContent(content, "Email :", email);
+        updateContent(content, "Phone Number :", phoneNumber);
+        updateContent(content, "Role :", role);
         System.out.println("\n");
 
         // Print the content after modifications
