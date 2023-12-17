@@ -22,6 +22,11 @@ public class SalesPerson extends javax.swing.JFrame {
     /**
      * Creates new form SalesPerson
      */
+    public void setInitialValues(String Username, String Password) {
+    jTextField_Username.setText(Username);
+    jTextField_Password.setText(Password);
+    }
+    
     public SalesPerson() {
         initComponents();
  
@@ -44,7 +49,7 @@ public class SalesPerson extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextField_Username = new javax.swing.JTextField();
         jTextField_Password = new javax.swing.JTextField();
-        jTextField_FullName = new javax.swing.JTextField();
+        jTextField_Name = new javax.swing.JTextField();
         jTextField_Email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -74,9 +79,9 @@ public class SalesPerson extends javax.swing.JFrame {
             }
         });
 
-        jTextField_FullName.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_FullNameActionPerformed(evt);
+                jTextField_NameActionPerformed(evt);
             }
         });
 
@@ -120,7 +125,7 @@ public class SalesPerson extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField_FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,7 +166,7 @@ public class SalesPerson extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField_FullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -186,15 +191,15 @@ public class SalesPerson extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_FullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_FullNameActionPerformed
+    private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_FullNameActionPerformed
+    }//GEN-LAST:event_jTextField_NameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     String id = jTextField_ID.getText();
     String username = jTextField_Username.getText();
     String password = jTextField_Password.getText();
-    String fullName = jTextField_FullName.getText();
+    String fullName = jTextField_Name.getText();
     String ageString = jTextField_Age.getText();
     int age = Integer.parseInt(ageString);
     String email = jTextField_Email.getText();
@@ -202,7 +207,7 @@ public class SalesPerson extends javax.swing.JFrame {
     String role = jTextField_Role.getText();
 
     // Read the existing content from the text file
-    String filePath = "D:/MyFirstJavaProject/src/main/java/Officer_Salesperson.txt";
+    String filePath = "Officer_Salesperson.txt";
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
         StringBuilder content = new StringBuilder();
         String line;
@@ -295,8 +300,8 @@ private void updateContent(StringBuilder content, String label, String value) {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField_Age;
     private javax.swing.JTextField jTextField_Email;
-    private javax.swing.JTextField jTextField_FullName;
     private javax.swing.JTextField jTextField_ID;
+    private javax.swing.JTextField jTextField_Name;
     private javax.swing.JTextField jTextField_Password;
     private javax.swing.JTextField jTextField_PhoneNumber;
     private javax.swing.JTextField jTextField_Role;

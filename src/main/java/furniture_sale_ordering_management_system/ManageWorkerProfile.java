@@ -304,17 +304,17 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton_deleteActionPerformed
 
-private void refreshTable(ManageWorkerProfile currentInstance) {
-    // Clear the existing data from the table
-    DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
-    model.setRowCount(0);
+        private void refreshTable(ManageWorkerProfile currentInstance) {
+            // Clear the existing data from the table
+            DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
+            model.setRowCount(0);
 
-    // Call displayBookings on the existing instance to reload the data
-    currentInstance.displayBookings();
+            // Call displayBookings on the existing instance to reload the data
+            currentInstance.displayBookings();
 
-    jTable_profiletable.revalidate();
-    jTable_profiletable.repaint();
-}
+            jTable_profiletable.revalidate();
+            jTable_profiletable.repaint();
+        }
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
         String searchText = jTextField_search.getText();

@@ -458,8 +458,8 @@ public ModifyWorkerProfile(String ID, String Username, String Password, String N
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
- ModifyWorkerProfile modifyProfile = new ModifyWorkerProfile(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
-modifyProfile.setVisible(true);
+        ModifyWorkerProfile modifyProfile = new ModifyWorkerProfile(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+        modifyProfile.setVisible(true);
 
             }
         });

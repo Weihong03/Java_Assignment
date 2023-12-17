@@ -1,5 +1,5 @@
 ID: S001, 
-Username: weihongooi,
+Username: Weihongooi,
 Password: Weihong123, 
 Name: Ooi Wei Hong,
 Age: 20
