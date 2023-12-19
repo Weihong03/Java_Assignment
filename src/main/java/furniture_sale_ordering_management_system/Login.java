@@ -188,9 +188,7 @@ public class Login extends javax.swing.JFrame {
                     }
                 }
             }
-            SalesPerson salesPerson = new SalesPerson();
-            salesPerson.setInitialValues(username,password);
-            salesPerson.setVisible(true);
+      
         } catch (IOException e) {
         }
         return false;

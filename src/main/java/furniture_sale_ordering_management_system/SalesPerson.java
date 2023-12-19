@@ -22,10 +22,7 @@ public class SalesPerson extends javax.swing.JFrame {
     /**
      * Creates new form SalesPerson
      */
-    public void setInitialValues(String Username, String Password) {
-    jTextField_Username.setText(Username);
-    jTextField_Password.setText(Password);
-    }
+
     
     public SalesPerson() {
         initComponents();

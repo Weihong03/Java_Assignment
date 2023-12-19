@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class Home extends javax.swing.JFrame {
 
     /**
+     *
      * Creates new form Home
      */
     public Home() {
@@ -48,7 +49,7 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton_logout = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_ManageProfile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +60,10 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Manage Profile");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ManageProfile.setText("Manage Profile");
+        jButton_ManageProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_ManageProfileActionPerformed(evt);
             }
         });
 
@@ -73,7 +74,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(159, 159, 159)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(jButton_ManageProfile)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton_logout)
                         .addGap(17, 17, 17)))
@@ -83,7 +84,7 @@ public class Home extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButton_ManageProfile)
                 .addGap(47, 47, 47)
                 .addComponent(jButton_logout)
                 .addGap(70, 70, 70))
@@ -114,13 +115,12 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_logoutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
+   
         SalesPerson salesPerson = new SalesPerson();
         salesPerson.setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton_ManageProfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,7 +158,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_ManageProfile;
     private javax.swing.JButton jButton_logout;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
