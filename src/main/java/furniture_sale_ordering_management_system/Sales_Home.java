@@ -15,12 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class Sales_Home extends javax.swing.JFrame {
 
-    /**
-     *
-     * Creates new form Home
-     */
-    public Sales_Home() {
+    private String userID;
+    
+    public Sales_Home(String userID) {
+        this.userID = userID;
+        
         initComponents();
+        
+        jTextField_ID.setText(userID);
+        
         // Set the title of the window
         setTitle("Home");
 
@@ -38,6 +41,10 @@ public class Sales_Home extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    private Sales_Home() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +58,7 @@ public class Sales_Home extends javax.swing.JFrame {
         jButton_logout = new javax.swing.JButton();
         jButton_ManageProfile = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextField_ID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +90,9 @@ public class Sales_Home extends javax.swing.JFrame {
                 .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(135, 135, 135))
         );
         jPanel1Layout.setVerticalGroup(
@@ -90,7 +100,9 @@ public class Sales_Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_logout)
                     .addComponent(jButton_ManageProfile))
@@ -169,5 +181,6 @@ public class Sales_Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton_logout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField_ID;
     // End of variables declaration//GEN-END:variables
 }

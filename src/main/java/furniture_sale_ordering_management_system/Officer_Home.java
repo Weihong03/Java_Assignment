@@ -14,12 +14,16 @@ import javax.swing.JOptionPane;
  * @author Wei Hong
  */
 public class Officer_Home extends javax.swing.JFrame {
+    
+    private String userID;
 
-    /**
-     * Creates new form Officer_Home
-     */
-    public Officer_Home() {
+    public Officer_Home(String userID) {
+        this.userID = userID;
+        
         initComponents();
+        
+        jTextField_ID.setText(userID);
+        
         // Set the title of the window
         setTitle("Login");
 
@@ -37,6 +41,10 @@ public class Officer_Home extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    private Officer_Home() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +57,7 @@ public class Officer_Home extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton_ManageProfile = new javax.swing.JButton();
         jButton_logout = new javax.swing.JButton();
+        jTextField_ID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,22 +82,26 @@ public class Officer_Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jButton_ManageProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jButton_logout)
                 .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_ManageProfile)
                     .addComponent(jButton_logout))
@@ -154,5 +167,6 @@ public class Officer_Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton_ManageProfile;
     private javax.swing.JButton jButton_logout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField_ID;
     // End of variables declaration//GEN-END:variables
 }

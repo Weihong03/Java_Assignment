@@ -166,19 +166,19 @@ public class Login extends javax.swing.JFrame {
             switch (rolePrefix) {
                 case 'A' -> {
                     // Admin Home
-                    Admin_Home adminHome = new Admin_Home();
+                    Admin_Home adminHome = new Admin_Home(userID);
                     adminHome.setVisible(true);
                     this.setVisible(false);
                 }
                 case 'S' -> {
                     // SalesPerson Home
-                    Sales_Home salesPersonHome = new Sales_Home();
+                    Sales_Home salesPersonHome = new Sales_Home(userID);
                     salesPersonHome.setVisible(true);
                     this.setVisible(false);
                 }
                 case 'O' -> {
                     // Officer Home
-                    Officer_Home officerHome = new Officer_Home();
+                    Officer_Home officerHome = new Officer_Home(userID);
                     officerHome.setVisible(true);
                     this.setVisible(false);
                 }

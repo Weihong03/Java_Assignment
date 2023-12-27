@@ -15,11 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class Admin_Home extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Admin_Home
-     */
-    public Admin_Home() {
+    private String userID;
+
+    public Admin_Home(String userID) {
+        this.userID = userID;
+        
         initComponents();
+        
+        jTextField_ID.setText(userID);
+        
         // Set the title of the window
         setTitle("Login");
 
@@ -37,6 +41,10 @@ public class Admin_Home extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    private Admin_Home() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +58,7 @@ public class Admin_Home extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton_logout = new javax.swing.JButton();
         jButton_ManagePsnProfile = new javax.swing.JButton();
+        jTextField_ID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +85,12 @@ public class Admin_Home extends javax.swing.JFrame {
             }
         });
 
+        jTextField_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_IDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,15 +98,17 @@ public class Admin_Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton_ManagePsnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_ManageProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(61, 61, 61)
-                        .addComponent(jButton_logout)))
+                        .addComponent(jButton_logout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,7 +116,9 @@ public class Admin_Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jButton_ManagePsnProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -133,6 +152,10 @@ public class Admin_Home extends javax.swing.JFrame {
         administratorprofile.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_ManagePsnProfileActionPerformed
+
+    private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,5 +197,6 @@ public class Admin_Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton_ManagePsnProfile;
     private javax.swing.JButton jButton_logout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField_ID;
     // End of variables declaration//GEN-END:variables
 }

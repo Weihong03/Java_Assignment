@@ -31,7 +31,7 @@ import javax.swing.JOptionPane;
  * @author Wei Hong
  */
 public class ManageWorkerProfile extends javax.swing.JFrame {
-
+    private String userID;
     /**
      * Creates new form ManageBooking
      */
@@ -219,7 +219,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
-        Sales_Home home = new Sales_Home();
+        Sales_Home home = new Sales_Home(userID);
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton_backActionPerformed
