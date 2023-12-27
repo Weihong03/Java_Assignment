@@ -164,23 +164,26 @@ public class Login extends javax.swing.JFrame {
 
             // Redirect to the corresponding home page
             switch (rolePrefix) {
-                case 'A':
+                case 'A' -> {
                     // Admin Home
                     Admin_Home adminHome = new Admin_Home();
                     adminHome.setVisible(true);
-                    break;
-                case 'S':
+                    this.setVisible(false);
+                }
+                case 'S' -> {
                     // SalesPerson Home
                     Sales_Home salesPersonHome = new Sales_Home();
                     salesPersonHome.setVisible(true);
-                    break;
-                case 'O':
+                    this.setVisible(false);
+                }
+                case 'O' -> {
                     // Officer Home
                     Officer_Home officerHome = new Officer_Home();
                     officerHome.setVisible(true);
-                    break;
-                default:
-                    break;
+                    this.setVisible(false);
+                }
+                default -> {
+                }
             }
         } else {
             showMessageDialog(this, "Invalid credentials. Please try again.");
@@ -201,20 +204,30 @@ public class Login extends javax.swing.JFrame {
         try (BufferedReader adminReader = new BufferedReader(new FileReader("Admin.txt")); BufferedReader SalesOfficerReader = new BufferedReader(new FileReader("Officer_Salesperson.txt"))) {
 
             String line;
+            String previousLine = null;
             while ((line = adminReader.readLine()) != null) {
-                if (line.contains("Username: " + username) && adminReader.readLine().contains("Password: " + password)) {
-                    // Return the corresponding ID
-                    return adminReader.readLine().split(": ")[1].trim();
+                if (line.contains("Username: " + username)) {
+                    // Read the next line for password validation
+                    String passwordLine = adminReader.readLine();
+                    if (passwordLine != null && passwordLine.contains("Password: " + password)) {
+                        // Return the corresponding ID
+                        return previousLine.split(": ")[1].trim();
+                    }
                 }
+                previousLine = line;
             }
 
             while ((line = SalesOfficerReader.readLine()) != null) {
-                if (line.contains("Username: " + username) && SalesOfficerReader.readLine().contains("Password: " + password)) {
-                    // Return the corresponding ID
-                    return SalesOfficerReader.readLine().split(": ")[1].trim();
+                if (line.contains("Username: " + username)) {
+                    // Read the next line for password validation
+                    String passwordLine = SalesOfficerReader.readLine();
+                    if (passwordLine != null && passwordLine.contains("Password: " + password)) {
+                        // Return the corresponding ID
+                        return previousLine.split(": ")[1].trim();
+                    }
                 }
+                previousLine = line;
             }
-
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
