@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -174,19 +173,9 @@ public class Signup extends javax.swing.JFrame {
             return;
         }
 
-        // Save the credentials to the text file
-        try {
-            FileWriter writer = new FileWriter("Officer_Salesperson.txt", true);
-            writer.write(username + "," + password + "\n");
-            writer.close();
-            JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error occurred while saving the credentials.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        // Close the sign-up form and open the login form
-        Login loginForm = new Login();
-        loginForm.setVisible(true);
+        // Close the sign-up form and open the build profile form, pass the credentials
+        Build_Profile buildprofile = new Build_Profile(username, password);
+        buildprofile.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_createActionPerformed
 
@@ -200,11 +189,12 @@ public class Signup extends javax.swing.JFrame {
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String[] credentials = line.split(",");
-                String existingUsername = credentials[0].trim();
-                if (existingUsername.equals(username)) {
-                    bufferedReader.close();
-                    return true;
+                if (line.contains("Username:")) {
+                    String existingUsername = line.split(":")[1].trim();
+                    if (existingUsername.equals(username)) {
+                        bufferedReader.close();
+                        return true;
+                    }
                 }
             }
             bufferedReader.close();
@@ -213,7 +203,7 @@ public class Signup extends javax.swing.JFrame {
         }
         return false;
     }
-    
+
     /**
      * @param args the command line arguments
      */

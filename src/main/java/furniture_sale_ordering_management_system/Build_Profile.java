@@ -4,7 +4,15 @@
  */
 package furniture_sale_ordering_management_system;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,22 +20,59 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class Build_Profile extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Profile
-     */
-    public Build_Profile() {
+    private String username;
+    private final String password;
+
+    public Build_Profile(String username, String password) {
+        this.username = username;
+        this.password = password;
+
+        // Set the received username and password in the UI
+        jTextField_username.setText(username);
+        jPasswordField_password.setText(password);
+
+        // Make username and password fields uneditable
+        jTextField_username.setEditable(false);
+        jPasswordField_password.setEditable(false);
+
         initComponents();
+
         // For Age JComboBox
         jComboBox_age.setModel(new DefaultComboBoxModel<>(generateAgeOptions()));
         // For Role JComboBox
         jComboBox_role.setModel(new DefaultComboBoxModel<>(new String[]{"Officer", "Salesperson"}));
+
+        // Set the title of the window
+        setTitle("Build Your Profile");
+
+        // Get the dimension of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Calculate the center coordinates
+        int centerX = (screenSize.width - getWidth()) / 2;
+        int centerY = (screenSize.height - getHeight()) / 2;
+
+        // Set the location of the window
+        setLocation(centerX, centerY);
+
+        // Set the default close operation
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    // Method to generate age options from 1 to 100
+
+    private Build_Profile() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+// Method to generate age options from 18 to 60
     private String[] generateAgeOptions() {
-        String[] ageOptions = new String[60];
-        for (int i = 17; i < 60; i++) {
-            ageOptions[i] = String.valueOf(i + 1);
+        int startAge = 18;
+        int endAge = 60;
+        int numberOfOptions = endAge - startAge + 1;
+
+        String[] ageOptions = new String[numberOfOptions];
+
+        for (int i = 0; i < numberOfOptions; i++) {
+            ageOptions[i] = String.valueOf(startAge + i);
         }
         return ageOptions;
     }
@@ -49,10 +94,14 @@ public class Build_Profile extends javax.swing.JFrame {
         jTextField_name = new javax.swing.JTextField();
         jTextField_phonenumber = new javax.swing.JTextField();
         jLabel_email = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTextField_email = new javax.swing.JTextField();
+        jButton_proceed = new javax.swing.JButton();
         jComboBox_role = new javax.swing.JComboBox<>();
         jComboBox_age = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField_username = new javax.swing.JTextField();
+        jPasswordField_password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,18 +134,18 @@ public class Build_Profile extends javax.swing.JFrame {
         jLabel_email.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel_email.setText("Email :");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextField_emailActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Proceed");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_proceed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton_proceed.setText("Proceed");
+        jButton_proceed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_proceedActionPerformed(evt);
             }
         });
 
@@ -111,6 +160,24 @@ public class Build_Profile extends javax.swing.JFrame {
         jComboBox_age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_ageActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Username :");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Password :");
+
+        jTextField_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_usernameActionPerformed(evt);
+            }
+        });
+
+        jPasswordField_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField_passwordActionPerformed(evt);
             }
         });
 
@@ -131,27 +198,41 @@ public class Build_Profile extends javax.swing.JFrame {
                                 .addGap(79, 79, 79)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField_phonenumber)
-                                    .addComponent(jTextField1)
+                                    .addComponent(jTextField_email)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jComboBox_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 121, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel_name)
-                                    .addComponent(jLabel_age))
-                                .addGap(153, 153, 153)
+                                    .addComponent(jLabel_age)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(120, 120, 120)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField_name, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextField_name)
+                                    .addComponent(jTextField_username)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jPasswordField_password)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jButton1)))
+                        .addGap(219, 219, 219)
+                        .addComponent(jButton_proceed)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jPasswordField_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_name)
                     .addComponent(jTextField_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,7 +243,7 @@ public class Build_Profile extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_email)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_phonenumber)
@@ -171,8 +252,8 @@ public class Build_Profile extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_role)
                     .addComponent(jComboBox_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_proceed)
                 .addGap(39, 39, 39))
         );
 
@@ -198,13 +279,31 @@ public class Build_Profile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_phonenumberActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextField_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextField_emailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton_proceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_proceedActionPerformed
+        // Validate and get user inputs
+        String idPrefix = (jComboBox_role.getSelectedItem().toString().equals("Officer")) ? "O" : "S";
+        String id = generateUserID(idPrefix);
+        String name = jTextField_name.getText();
+        String age = jComboBox_age.getSelectedItem().toString();
+        String email = jTextField_email.getText();
+        String phoneNumber = jTextField_phonenumber.getText();
+        String role = jComboBox_role.getSelectedItem().toString();
+
+        // Validate and save to file
+        if (validateInputs(name, email, phoneNumber)) {
+            saveToFile(id, username, password, name, age, email, phoneNumber, role);
+
+            // Display a success message
+            JOptionPane.showMessageDialog(this, "Profile successfully created!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton_proceedActionPerformed
 
     private void jComboBox_roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_roleActionPerformed
 
@@ -213,6 +312,63 @@ public class Build_Profile extends javax.swing.JFrame {
     private void jComboBox_ageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_ageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_ageActionPerformed
+
+    private void jTextField_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_usernameActionPerformed
+
+    private void jPasswordField_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField_passwordActionPerformed
+
+    private String generateUserID(String idPrefix) {
+        int latestID = getLatestUserID(idPrefix);
+        latestID++;
+        return String.format("%s%03d", idPrefix, latestID);
+    }
+
+    // Additional method to get the latest user ID for a given role
+    private int getLatestUserID(String idPrefix) {
+        int latestID = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("Officer_Salesperson.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("ID: " + idPrefix)) {
+                    // Extract the numeric part of the ID
+                    int idNumber = Integer.parseInt(line.substring(4 + idPrefix.length(), line.indexOf(',')));
+                    latestID = Math.max(latestID, idNumber);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return latestID;
+    }
+
+    // Validate user inputs
+    private boolean validateInputs(String name, String email, String phoneNumber) {
+        if (name.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    // Save details into file
+    private void saveToFile(String id, String username, String password, String name, String age, String email, String phoneNumber, String role) {
+        try (FileWriter writer = new FileWriter("Officer_Salesperson.txt", true)) {
+            // Format the details and write to the file
+            String userDetails = String.format("ID: %s, Username: %s, Password: %s, Name: %s, Age: %s, Email: %s, PhoneNumber: %s, Role: %s%n",
+                    id, username, password, name, age, email, phoneNumber, role);
+
+            writer.write(userDetails);
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error saving user details.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -253,17 +409,21 @@ public class Build_Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_proceed;
     private javax.swing.JComboBox<String> jComboBox_age;
     private javax.swing.JComboBox<String> jComboBox_role;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel_age;
     private javax.swing.JLabel jLabel_email;
     private javax.swing.JLabel jLabel_name;
     private javax.swing.JLabel jLabel_phonenumber;
     private javax.swing.JLabel jLabel_role;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jPasswordField_password;
+    private javax.swing.JTextField jTextField_email;
     private javax.swing.JTextField jTextField_name;
     private javax.swing.JTextField jTextField_phonenumber;
+    private javax.swing.JTextField jTextField_username;
     // End of variables declaration//GEN-END:variables
 }
