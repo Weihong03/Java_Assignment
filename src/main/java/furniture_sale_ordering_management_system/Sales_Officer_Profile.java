@@ -1,11 +1,14 @@
 package furniture_sale_ordering_management_system;
 
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,7 +21,8 @@ import javax.swing.JOptionPane;
  * @author Acer
  */
 public class Sales_Officer_Profile extends javax.swing.JFrame {
-
+    
+    private String userID;
     /**
      * Creates new form SalesPerson
      */
@@ -26,7 +30,22 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
     
     public Sales_Officer_Profile() {
         initComponents();
- 
+        // Set the title of the window
+        setTitle("Manage Worker Profile");
+
+        // Get the dimension of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Calculate the center coordinates
+        int centerX = (screenSize.width - getWidth()) / 2;
+        int centerY = (screenSize.height - getHeight()) / 2;
+
+        // Set the location of the window
+        setLocation(centerX, centerY);
+
+        // Set the default close operation
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 
     /**
@@ -56,6 +75,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
         jTextField_Age = new javax.swing.JTextField();
         jTextField_PhoneNumber = new javax.swing.JTextField();
         jTextField_Role = new javax.swing.JTextField();
+        jButton_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +109,13 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
         jLabel8.setText("Phone Number :");
 
         jLabel9.setText("Role :");
+
+        jButton_back.setText("Back");
+        jButton_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +163,9 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
                             .addComponent(jTextField_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(jButton_back)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -181,7 +210,9 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jTextField_Role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_back))
                 .addContainerGap())
         );
 
@@ -249,6 +280,12 @@ private void updateContent(StringBuilder content, String label, String value) {
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
+        Sales_Home home = new Sales_Home(userID);
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +326,7 @@ private void updateContent(StringBuilder content, String label, String value) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

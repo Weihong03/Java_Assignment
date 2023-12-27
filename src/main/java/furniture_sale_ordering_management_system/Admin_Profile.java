@@ -1,11 +1,14 @@
 package furniture_sale_ordering_management_system;
 
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,6 +21,7 @@ import javax.swing.JOptionPane;
  * @author Acer
  */
 public class Admin_Profile extends javax.swing.JFrame {
+    private String userID;
 
 
     /**
@@ -25,7 +29,21 @@ public class Admin_Profile extends javax.swing.JFrame {
      */
     public Admin_Profile() {
         initComponents();
+        // Set the title of the window
+        setTitle("Manage Worker Profile");
 
+        // Get the dimension of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Calculate the center coordinates
+        int centerX = (screenSize.width - getWidth()) / 2;
+        int centerY = (screenSize.height - getHeight()) / 2;
+
+        // Set the location of the window
+        setLocation(centerX, centerY);
+
+        // Set the default close operation
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -56,6 +74,7 @@ public class Admin_Profile extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField_Age = new javax.swing.JTextField();
         jTextField_ID = new javax.swing.JTextField();
+        jButton_back = new javax.swing.JButton();
 
         jLabel4.setText("jLabel4");
 
@@ -92,17 +111,26 @@ public class Admin_Profile extends javax.swing.JFrame {
 
         jLabel10.setText("Age :");
 
+        jButton_back.setText("Back");
+        jButton_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(116, 116, 116))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton_back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
                         .addGap(148, 148, 148))))
             .addGroup(layout.createSequentialGroup()
@@ -171,7 +199,9 @@ public class Admin_Profile extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jTextField_Role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
-                .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton_back)))
         );
 
         pack();
@@ -240,6 +270,12 @@ public class Admin_Profile extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
+        Admin_Home home = new Admin_Home(userID);
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +316,7 @@ public class Admin_Profile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

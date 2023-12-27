@@ -23,6 +23,7 @@ public class Admin_Home extends javax.swing.JFrame {
         initComponents();
         
         jTextField_ID.setText(userID);
+        jTextField_ID.setEditable(false);
         
         // Set the title of the window
         setTitle("Login");

@@ -219,7 +219,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
-        Sales_Home home = new Sales_Home(userID);
+        Admin_Home home = new Admin_Home(userID);
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton_backActionPerformed
