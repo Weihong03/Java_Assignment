@@ -156,9 +156,6 @@ public class Login extends javax.swing.JFrame {
         String username = jTextField_username.getText();
         String password = new String(jPasswordField_password.getPassword());
 
-        System.out.println("Entered Username: " + username);
-        System.out.println("Entered Password: " + password);
-        
         String userId = validateCredentials(username, password);
 
         if (userId != null) {
@@ -174,10 +171,10 @@ public class Login extends javax.swing.JFrame {
                 salesHome.setVisible(true);
             } else {
                 showMessageDialog(null, "Invalid user role.");
-                return; // Don't proceed further
+                return;
             }
 
-            dispose(); // Close the current login window
+            dispose();
         } else {
             showMessageDialog(null, "Invalid username or password.");
         }
@@ -198,27 +195,25 @@ public class Login extends javax.swing.JFrame {
 
             String line;
             while ((line = adminReader.readLine()) != null) {
-                System.out.println("Admin Line: " + line);
                 String[] parts = line.split(",");
                 if (parts.length == 7) {
-                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(": ") + 1);
-                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(": ") + 1);
+                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(":") + 1).trim();
+                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(":") + 1).trim();
                     if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                        //Return the ID
-                        return parts[0].trim();
+                        // Return the ID
+                        return parts[0].trim().substring(parts[0].trim().indexOf(":") + 1).trim();
                     }
                 }
             }
 
             while ((line = SalesOfficerReader.readLine()) != null) {
-                System.out.println("Sales Officer Line: " + line);
                 String[] parts = line.split(",");
                 if (parts.length == 7) {
-                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(": ") + 1);
-                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(": ") + 1);
+                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(":") + 1).trim();
+                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(":") + 1).trim();
                     if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                        //Return the ID
-                        return parts[0].trim();
+                        // Return the ID
+                        return parts[0].trim().substring(parts[0].trim().indexOf(":") + 1).trim();
                     }
                 }
             }
