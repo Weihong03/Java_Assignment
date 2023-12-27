@@ -156,10 +156,28 @@ public class Login extends javax.swing.JFrame {
         String username = jTextField_username.getText();
         String password = new String(jPasswordField_password.getPassword());
 
-        if (validateCredentials(username, password)) {
-            Sales_Home home = new Sales_Home();
-            home.setVisible(true);
-            dispose();
+        System.out.println("Entered Username: " + username);
+        System.out.println("Entered Password: " + password);
+        
+        String userId = validateCredentials(username, password);
+
+        if (userId != null) {
+            // Check the prefix of the ID to determine the role
+            if (userId.startsWith("A")) {
+                Admin_Home adminHome = new Admin_Home();
+                adminHome.setVisible(true);
+            } else if (userId.startsWith("O")) {
+                Officer_Home officerHome = new Officer_Home();
+                officerHome.setVisible(true);
+            } else if (userId.startsWith("S")) {
+                Sales_Home salesHome = new Sales_Home();
+                salesHome.setVisible(true);
+            } else {
+                showMessageDialog(null, "Invalid user role.");
+                return; // Don't proceed further
+            }
+
+            dispose(); // Close the current login window
         } else {
             showMessageDialog(null, "Invalid username or password.");
         }
@@ -175,23 +193,40 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField_passwordActionPerformed
 
-    private boolean validateCredentials(String username, String password) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("Credentials.txt"))) {
+    private String validateCredentials(String username, String password) {
+        try (BufferedReader adminReader = new BufferedReader(new FileReader("Admin.txt")); BufferedReader SalesOfficerReader = new BufferedReader(new FileReader("Officer_Salesperson.txt"))) {
+
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = adminReader.readLine()) != null) {
+                System.out.println("Admin Line: " + line);
                 String[] parts = line.split(",");
-                if (parts.length == 2) {
-                    String storedUsername = parts[0];
-                    String storedPassword = parts[1];
+                if (parts.length == 7) {
+                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(": ") + 1);
+                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(": ") + 1);
                     if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                        return true;
+                        //Return the ID
+                        return parts[0].trim();
+                    }
+                }
+            }
+
+            while ((line = SalesOfficerReader.readLine()) != null) {
+                System.out.println("Sales Officer Line: " + line);
+                String[] parts = line.split(",");
+                if (parts.length == 7) {
+                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(": ") + 1);
+                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(": ") + 1);
+                    if (username.equals(storedUsername) && password.equals(storedPassword)) {
+                        //Return the ID
+                        return parts[0].trim();
                     }
                 }
             }
 
         } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
         }
-        return false;
+        return null;
     }
 
     /**
@@ -208,16 +243,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
