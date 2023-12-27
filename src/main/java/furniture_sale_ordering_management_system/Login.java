@@ -211,7 +211,7 @@ public class Login extends javax.swing.JFrame {
                     String passwordLine = adminReader.readLine();
                     if (passwordLine != null && passwordLine.contains("Password: " + password)) {
                         // Return the corresponding ID
-                        return previousLine.split(": ")[1].trim();
+                        return previousLine.split(": ")[1].trim().replace(",", "");
                     }
                 }
                 previousLine = line;
@@ -223,7 +223,7 @@ public class Login extends javax.swing.JFrame {
                     String passwordLine = SalesOfficerReader.readLine();
                     if (passwordLine != null && passwordLine.contains("Password: " + password)) {
                         // Return the corresponding ID
-                        return previousLine.split(": ")[1].trim();
+                        return previousLine.split(": ")[1].trim().replace(",", "");
                     }
                 }
                 previousLine = line;
