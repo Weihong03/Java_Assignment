@@ -176,7 +176,7 @@ public class Signup extends javax.swing.JFrame {
 
         // Save the credentials to the text file
         try {
-            FileWriter writer = new FileWriter("Credentials.txt", true);
+            FileWriter writer = new FileWriter("Officer_Salesperson.txt", true);
             writer.write(username + "," + password + "\n");
             writer.close();
             JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -196,7 +196,7 @@ public class Signup extends javax.swing.JFrame {
 
     private boolean isUsernameExists(String username) {
         try {
-            FileReader reader = new FileReader("Credentials.txt");
+            FileReader reader = new FileReader("Officer_Salesperson.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
