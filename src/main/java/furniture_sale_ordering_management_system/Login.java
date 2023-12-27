@@ -156,27 +156,34 @@ public class Login extends javax.swing.JFrame {
         String username = jTextField_username.getText();
         String password = new String(jPasswordField_password.getPassword());
 
-        String userId = validateCredentials(username, password);
+        String userID = validateCredentials(username, password);
 
-        if (userId != null) {
-            // Check the prefix of the ID to determine the role
-            if (userId.startsWith("A")) {
-                Admin_Home adminHome = new Admin_Home();
-                adminHome.setVisible(true);
-            } else if (userId.startsWith("O")) {
-                Officer_Home officerHome = new Officer_Home();
-                officerHome.setVisible(true);
-            } else if (userId.startsWith("S")) {
-                Sales_Home salesHome = new Sales_Home();
-                salesHome.setVisible(true);
-            } else {
-                showMessageDialog(null, "Invalid user role.");
-                return;
+        if (userID != null) {
+            // Determine the role based on the userID prefix
+            char rolePrefix = userID.charAt(0);
+
+            // Redirect to the corresponding home page
+            switch (rolePrefix) {
+                case 'A':
+                    // Admin Home
+                    Admin_Home adminHome = new Admin_Home();
+                    adminHome.setVisible(true);
+                    break;
+                case 'S':
+                    // SalesPerson Home
+                    Sales_Home salesPersonHome = new Sales_Home();
+                    salesPersonHome.setVisible(true);
+                    break;
+                case 'O':
+                    // Officer Home
+                    Officer_Home officerHome = new Officer_Home();
+                    officerHome.setVisible(true);
+                    break;
+                default:
+                    break;
             }
-
-            dispose();
         } else {
-            showMessageDialog(null, "Invalid username or password.");
+            showMessageDialog(this, "Invalid credentials. Please try again.");
         }
     }//GEN-LAST:event_jButton_loginActionPerformed
 
@@ -195,26 +202,16 @@ public class Login extends javax.swing.JFrame {
 
             String line;
             while ((line = adminReader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 7) {
-                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(":") + 1).trim();
-                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(":") + 1).trim();
-                    if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                        // Return the ID
-                        return parts[0].trim().substring(parts[0].trim().indexOf(":") + 1).trim();
-                    }
+                if (line.contains("Username: " + username) && adminReader.readLine().contains("Password: " + password)) {
+                    // Return the corresponding ID
+                    return adminReader.readLine().split(": ")[1].trim();
                 }
             }
 
             while ((line = SalesOfficerReader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 7) {
-                    String storedUsername = parts[1].trim().substring(parts[1].trim().indexOf(":") + 1).trim();
-                    String storedPassword = parts[2].trim().substring(parts[2].trim().indexOf(":") + 1).trim();
-                    if (username.equals(storedUsername) && password.equals(storedPassword)) {
-                        // Return the ID
-                        return parts[0].trim().substring(parts[0].trim().indexOf(":") + 1).trim();
-                    }
+                if (line.contains("Username: " + username) && SalesOfficerReader.readLine().contains("Password: " + password)) {
+                    // Return the corresponding ID
+                    return SalesOfficerReader.readLine().split(": ")[1].trim();
                 }
             }
 
