@@ -157,7 +157,7 @@ public class Login extends javax.swing.JFrame {
         String password = new String(jPasswordField_password.getPassword());
 
         if (validateCredentials(username, password)) {
-            Home home = new Home();
+            Sales_Home home = new Sales_Home();
             home.setVisible(true);
             dispose();
         } else {

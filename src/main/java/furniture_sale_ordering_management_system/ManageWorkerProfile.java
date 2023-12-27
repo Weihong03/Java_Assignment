@@ -8,7 +8,7 @@ package furniture_sale_ordering_management_system;
  */
 
 import furniture_sale_ordering_management_system.ModifyWorkerProfile;
-import furniture_sale_ordering_management_system.Home;
+import furniture_sale_ordering_management_system.Sales_Home;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.RowFilter;
@@ -219,7 +219,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
-        Home home = new Home();
+        Sales_Home home = new Sales_Home();
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton_backActionPerformed

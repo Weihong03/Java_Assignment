@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author Wei Hong
  */
-public class Home extends javax.swing.JFrame {
+public class Sales_Home extends javax.swing.JFrame {
 
     /**
      *
      * Creates new form Home
      */
-    public Home() {
+    public Sales_Home() {
         initComponents();
         // Set the title of the window
         setTitle("Home");
@@ -50,6 +50,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton_logout = new javax.swing.JButton();
         jButton_ManageProfile = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,26 +68,32 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Sales Person Home");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_ManageProfile)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton_logout)
-                        .addGap(17, 17, 17)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(jButton_ManageProfile)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(jButton_logout)
+                .addGap(51, 51, 51))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(135, 135, 135))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(jButton_ManageProfile)
-                .addGap(47, 47, 47)
-                .addComponent(jButton_logout)
+                .addGap(79, 79, 79)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_logout)
+                    .addComponent(jButton_ManageProfile))
                 .addGap(70, 70, 70))
         );
 
@@ -116,7 +123,6 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_logoutActionPerformed
 
     private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
-   
         SalesPerson salesPerson = new SalesPerson();
         salesPerson.setVisible(true);
         this.dispose();
@@ -139,20 +145,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sales_Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sales_Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sales_Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sales_Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Sales_Home().setVisible(true);
             }
         });
     }
@@ -160,6 +167,7 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ManageProfile;
     private javax.swing.JButton jButton_logout;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
