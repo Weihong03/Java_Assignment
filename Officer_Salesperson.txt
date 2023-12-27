@@ -2,7 +2,7 @@ ID: S001,
 Username: Weihongooi,
 Password: Weihong123, 
 Name: Ooi Wei Hong,
-Age: 20
+Age: 20,
 Email: TP065329@mail.apu.edu.my,
 PhoneNumber: 0122723624,
 Role: SalesPerson,
