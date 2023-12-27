@@ -15,3 +15,21 @@ Age: 40,
 Email: TP065421@mail.apu.edu.my,
 PhoneNumber: 0129984402,
 Role: Officer,
+
+ID: O002,
+Username: Popotail,
+Password: Popotail123,
+Name: Popotail9986,
+Age: 60,
+Email: weihongooi0128@gmail.com,
+PhoneNumber: 0124213708,
+Role: Officer
+
+ID: O003,
+Username: Atticus,
+Password: Atticus123,
+Name: Atticus9986,
+Age: 24,
+Email: popo12,
+PhoneNumber: 29348828248,
+Role: Officer

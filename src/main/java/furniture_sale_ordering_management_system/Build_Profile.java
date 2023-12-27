@@ -26,7 +26,9 @@ public class Build_Profile extends javax.swing.JFrame {
     public Build_Profile(String username, String password) {
         this.username = username;
         this.password = password;
-
+        
+        initComponents();
+        
         // Set the received username and password in the UI
         jTextField_username.setText(username);
         jPasswordField_password.setText(password);
@@ -34,8 +36,6 @@ public class Build_Profile extends javax.swing.JFrame {
         // Make username and password fields uneditable
         jTextField_username.setEditable(false);
         jPasswordField_password.setEditable(false);
-
-        initComponents();
 
         // For Age JComboBox
         jComboBox_age.setModel(new DefaultComboBoxModel<>(generateAgeOptions()));
@@ -359,7 +359,7 @@ public class Build_Profile extends javax.swing.JFrame {
     private void saveToFile(String id, String username, String password, String name, String age, String email, String phoneNumber, String role) {
         try (FileWriter writer = new FileWriter("Officer_Salesperson.txt", true)) {
             // Format the details and write to the file
-            String userDetails = String.format("ID: %s, Username: %s, Password: %s, Name: %s, Age: %s, Email: %s, PhoneNumber: %s, Role: %s%n",
+            String userDetails = String.format("\nID: %s,\nUsername: %s,\nPassword: %s,\nName: %s,\nAge: %s,\nEmail: %s,\nPhoneNumber: %s,\nRole: %s%n",
                     id, username, password, name, age, email, phoneNumber, role);
 
             writer.write(userDetails);
