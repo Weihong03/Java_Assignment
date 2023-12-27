@@ -123,7 +123,7 @@ public class Sales_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_logoutActionPerformed
 
     private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
-        SalesPerson salesPerson = new SalesPerson();
+        Sales_Officer_Profile salesPerson = new Sales_Officer_Profile();
         salesPerson.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_ManageProfileActionPerformed
