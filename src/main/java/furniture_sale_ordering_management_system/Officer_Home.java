@@ -4,6 +4,8 @@
  */
 package furniture_sale_ordering_management_system;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Wei Hong
@@ -27,24 +29,24 @@ public class Officer_Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton_ManageProfile = new javax.swing.JButton();
+        jButton_logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Officer Home");
 
-        jButton1.setText("Mange Profile");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ManageProfile.setText("Mange Profile");
+        jButton_ManageProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_ManageProfileActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Log Out");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_logout.setText("Log Out");
+        jButton_logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton_logoutActionPerformed(evt);
             }
         });
 
@@ -58,9 +60,9 @@ public class Officer_Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jButton1)
+                .addComponent(jButton_ManageProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jButton_logout)
                 .addGap(83, 83, 83))
         );
         layout.setVerticalGroup(
@@ -70,21 +72,28 @@ public class Officer_Home extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton_ManageProfile)
+                    .addComponent(jButton_logout))
                 .addGap(79, 79, 79))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
+        
+    }//GEN-LAST:event_jButton_ManageProfileActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_logoutActionPerformed
+        int choice = JOptionPane.showConfirmDialog(this, "Do you want to exit?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
+
+        if (choice == JOptionPane.YES_OPTION) {
+            // Open Login JFrame
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,8 +131,8 @@ public class Officer_Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_ManageProfile;
+    private javax.swing.JButton jButton_logout;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
