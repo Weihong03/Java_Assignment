@@ -26,7 +26,7 @@ public class Officer_Home extends javax.swing.JFrame {
         jTextField_ID.setEditable(false);
         
         // Set the title of the window
-        setTitle("Login");
+        setTitle("Officer Home");
 
         // Get the dimension of the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
