@@ -404,9 +404,9 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ManageWorkerProfile manageBooking = new ManageWorkerProfile();
-                manageBooking.setVisible(true);
-                manageBooking.displayBookings(); // Call the method to display the bookings on startup
+                ManageWorkerProfile manageProfile = new ManageWorkerProfile();
+                manageProfile.setVisible(true);
+                manageProfile.displayBookings(); // Call the method to display the bookings on startup
             }
         });
     }

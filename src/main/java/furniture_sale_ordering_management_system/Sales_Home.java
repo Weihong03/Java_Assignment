@@ -15,10 +15,24 @@ import javax.swing.JOptionPane;
  */
 public class Sales_Home extends javax.swing.JFrame {
 
-    private String userID;
+    public static String userID;
+    public static String Username;
+    public static String Password;
+    public static String Name;
+    public static int Age;
+    public static String Email;
+    public static String PhoneNumber;
+    public static String Role;
     
     public Sales_Home(String userID) {
-        this.userID = userID;
+        Sales_Home.userID = userID;
+        this.Username = Username;
+        this.Password = Password;
+        this.Name = Name;
+        this.Age = Age;
+        this.Email = Email;
+        this.PhoneNumber = PhoneNumber;
+        this.Role = Role;
         
         initComponents();
         
@@ -136,8 +150,9 @@ public class Sales_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_logoutActionPerformed
 
     private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
-        Sales_Officer_Profile salesPerson = new Sales_Officer_Profile(userID);
-        salesPerson.setVisible(true);
+        Sales_Officer_Profile sales_officer_Profile = new Sales_Officer_Profile(userID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+        sales_officer_Profile.setInitialValues(userID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+        sales_officer_Profile.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_ManageProfileActionPerformed
 
@@ -172,7 +187,8 @@ public class Sales_Home extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sales_Home().setVisible(true);
+                Sales_Home salesHome = new Sales_Home();
+                salesHome.setVisible(true);
             }
         });
     }

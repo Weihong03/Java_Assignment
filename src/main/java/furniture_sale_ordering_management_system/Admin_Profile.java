@@ -21,14 +21,24 @@ import javax.swing.JOptionPane;
  * @author Acer
  */
 public class Admin_Profile extends javax.swing.JFrame {
-    private String userID;
+    public String userID;
+    public String Username;
+    public String Password;
+    public String Name;
+    public int Age;
+    public String Email;
+    public String PhoneNumber;
+    public String Role;
 
 
     /**
      * Creates new form Administrator
+     * @param userID
      */
-    public Admin_Profile() {
+    public Admin_Profile(String userID) {
+        this.userID = userID;
         initComponents();
+        
         // Set the title of the window
         setTitle("Manage Worker Profile");
 
@@ -44,6 +54,10 @@ public class Admin_Profile extends javax.swing.JFrame {
 
         // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private Admin_Profile() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

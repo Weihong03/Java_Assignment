@@ -40,6 +40,14 @@ public class ModifyWorkerProfile extends javax.swing.JFrame {
 
     /**
      * Creates new form RoomBooking
+     * @param ID
+     * @param Username
+     * @param Password
+     * @param Name
+     * @param Age
+     * @param Email
+     * @param PhoneNumber
+     * @param Role
      */public void setInitialValues(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
     jTextField_ID.setText(ID);
     jTextField_Username.setText(Username);
@@ -50,8 +58,9 @@ public class ModifyWorkerProfile extends javax.swing.JFrame {
     jTextField_PhoneNumber.setText(PhoneNumber);
     jTextField_Role.setText(Role);
 }
+     
 public ModifyWorkerProfile(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role){
-    this.ID = ID;
+        this.ID = ID;
         this.Username = Username;
         this.Password = Password;
         this.Name = Name;

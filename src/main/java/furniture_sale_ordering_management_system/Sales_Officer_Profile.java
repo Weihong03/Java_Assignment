@@ -22,16 +22,33 @@ import javax.swing.JOptionPane;
  */
 public class Sales_Officer_Profile extends javax.swing.JFrame {
     
-    private final String userID;
+    public static String userID;
+    public static String Username;
+    public static String Password;
+    public static String Name;
+    public static int Age;
+    public static String Email;
+    public static String PhoneNumber;
+    public static String Role;
 
+    private static final String BOOKING_FILE_PATH = "D:\\NetBeansProjects\\Java_Assignment\\src\\main\\java\\furniture_sale_ordering_management_system\\Officer_Salesperson.txt";
 
+    public void setInitialValues(String userID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+    jTextField_ID.setText(userID);
+    jTextField_Username.setText(Username);
+    jTextField_Password.setText(Password);
+    jTextField_Name.setText(Name);
+    jTextField_Age.setText(Integer.toString(Age));
+    jTextField_Email.setText(Email);
+    jTextField_PhoneNumber.setText(PhoneNumber);
+    jTextField_Role.setText(Role);
+    }
     
-    public Sales_Officer_Profile(String userID) {
-        this.userID = userID;
+    public Sales_Officer_Profile(String userID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
         
         initComponents();
         // Set the title of the window
-        setTitle("Manage Worker Profile");
+        setTitle("Sales_Officer_Profile");
 
         // Get the dimension of the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -48,9 +65,6 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
         
     }
 
-    private Sales_Officer_Profile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +80,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton_Update = new javax.swing.JButton();
         jTextField_Username = new javax.swing.JTextField();
         jTextField_Password = new javax.swing.JTextField();
         jTextField_Name = new javax.swing.JTextField();
@@ -93,10 +107,10 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
 
         jLabel5.setText("Email :");
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Update.setText("Update");
+        jButton_Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_UpdateActionPerformed(evt);
             }
         });
 
@@ -170,7 +184,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jButton_back)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +229,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
                     .addComponent(jTextField_Role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_back))
                 .addContainerGap())
         );
@@ -227,7 +241,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_NameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UpdateActionPerformed
     String id = jTextField_ID.getText();
     String username = jTextField_Username.getText();
     String password = jTextField_Password.getText();
@@ -282,10 +296,10 @@ private void updateContent(StringBuilder content, String label, String value) {
     } else {
         System.out.println("Label not found: " + label);
     }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_UpdateActionPerformed
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
-        Sales_Home home = new Sales_Home(userID);
+        Sales_Home home = new Sales_Home(userID,Username,Password,Name,Age,Email,PhoneNumber,Role);
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton_backActionPerformed
@@ -323,13 +337,14 @@ private void updateContent(StringBuilder content, String label, String value) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sales_Officer_Profile().setVisible(true);
+                Sales_Officer_Profile salesOfficerProfile = new Sales_Officer_Profile(userID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+                salesOfficerProfile.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_Update;
     private javax.swing.JButton jButton_back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

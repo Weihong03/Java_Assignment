@@ -149,7 +149,7 @@ public class Admin_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_ManageProfileActionPerformed
 
     private void jButton_ManagePsnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManagePsnProfileActionPerformed
-        Admin_Profile administratorprofile = new Admin_Profile();
+        Admin_Profile administratorprofile = new Admin_Profile(userID);
         administratorprofile.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_ManagePsnProfileActionPerformed
