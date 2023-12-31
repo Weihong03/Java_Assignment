@@ -239,10 +239,10 @@ public class Sale_Approval extends javax.swing.JFrame {
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
         String searchText = jTextField_search.getText();
-        searchBookings(searchText);
+        searchSales(searchText);
     }//GEN-LAST:event_jTextField_searchActionPerformed
 
-    public void searchBookings(String searchText) {
+    public void searchSales(String searchText) {
         TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable_Salestable.getModel());
         jTable_Salestable.setRowSorter(rowSorter);
 

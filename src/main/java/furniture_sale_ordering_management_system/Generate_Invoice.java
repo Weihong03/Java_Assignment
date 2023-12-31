@@ -4,7 +4,6 @@
  */
 package Furniture_Sale_Ordering_Management_System;
 
-import furniture_sale_ordering_management_system.Officer_Home;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -24,13 +23,13 @@ import java.io.FileOutputStream;
  *
  * @author Wei Hong
  */
-public class GenerateInvoice extends javax.swing.JFrame {
+public class Generate_Invoice extends javax.swing.JFrame {
     private String userID;
 
     /**
      * Creates new form ViewReciept
      */
-    public GenerateInvoice() {
+    public Generate_Invoice() {
         initComponents();
         // Set the title of the window
         setTitle("Generate Invoice");
@@ -65,7 +64,7 @@ public class GenerateInvoice extends javax.swing.JFrame {
         jButton_back = new javax.swing.JButton();
         jTextField_search = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_bookingtable = new javax.swing.JTable();
+        jTable_salestable = new javax.swing.JTable();
         jButton_generate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,8 +111,8 @@ public class GenerateInvoice extends javax.swing.JFrame {
             }
         });
 
-        jTable_bookingtable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable_bookingtable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_salestable.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTable_salestable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -133,7 +132,7 @@ public class GenerateInvoice extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable_bookingtable);
+        jScrollPane1.setViewportView(jTable_salestable);
 
         jButton_generate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton_generate.setText("Generate");
@@ -204,16 +203,16 @@ public class GenerateInvoice extends javax.swing.JFrame {
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
         String searchText = jTextField_search.getText();
-        searchBookings(searchText);
+        searchSales(searchText);
     }//GEN-LAST:event_jTextField_searchActionPerformed
 
     private void jButton_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_generateActionPerformed
         
     }//GEN-LAST:event_jButton_generateActionPerformed
 
-    public void searchBookings(String searchText) {
-        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable_bookingtable.getModel());
-        jTable_bookingtable.setRowSorter(rowSorter);
+    public void searchSales(String searchText) {
+        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable_salestable.getModel());
+        jTable_salestable.setRowSorter(rowSorter);
 
         RowFilter<TableModel, Object> rowFilter = RowFilter.regexFilter("(?i)" + searchText); // Case-insensitive search
         rowSorter.setRowFilter(rowFilter);
@@ -236,13 +235,13 @@ public class GenerateInvoice extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewReceipt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Generate_Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewReceipt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Generate_Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewReceipt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Generate_Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewReceipt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Generate_Invoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -250,7 +249,7 @@ public class GenerateInvoice extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateInvoice().setVisible(true);
+                new Generate_Invoice().setVisible(true);
             }
         });
     }
@@ -263,7 +262,7 @@ public class GenerateInvoice extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_bookingtable;
+    private javax.swing.JTable jTable_salestable;
     private javax.swing.JTextField jTextField_search;
     // End of variables declaration//GEN-END:variables
 }
