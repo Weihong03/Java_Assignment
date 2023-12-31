@@ -164,7 +164,7 @@ public class Officer_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_saleapprovalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Generate_Invoice invoice = new Generate_Invoice(userID);
+        Generate_Invoice invoice = new Generate_Invoice();
         invoice.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
