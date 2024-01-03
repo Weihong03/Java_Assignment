@@ -5,7 +5,6 @@
 package furniture_sale_ordering_management_system;
 
 import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.DefaultLayoutCallBack;
-import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.DefaultOption;
 import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.GlassPanePopup;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -104,6 +103,7 @@ public class Officer_Home extends javax.swing.JFrame {
         });
 
         button_notification.setIcon(new javax.swing.ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/icon.png"))); // NOI18N
+        button_notification.setOpaque(true);
         button_notification.setPreferredSize(new java.awt.Dimension(35, 35));
         button_notification.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
