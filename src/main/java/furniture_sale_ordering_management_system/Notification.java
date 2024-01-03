@@ -36,13 +36,13 @@ public class Notification extends javax.swing.JPanel {
         sb.setUI(new ModernScrollBarUI());
         jScrollPane_scroll.getViewport().setOpaque(false);
         jScrollPane_scroll.setViewportBorder(null);
-        jScrollPane_scroll.setLayout(new MigLayout("inset 0, fillx, wrap", "[fill]"));
+        jPanel1.setLayout(new MigLayout("inset 0, fillx, wrap", "[fill]"));
         loadNotification();
     }
     private void loadNotification() {
-        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/Images/p1.jpg")), "Steve", "answered to you", "a day ago", 20));
-        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/Images/p2.jpg")), "Ali", "did not answered to you", "a day ago", 40));
-        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/Images/profile picture1.jpg")), "John", "think and think then baru answered to you", "a day ago", 60));
+        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/p1.jpg")), "Steve", "answered to you", "a day ago", 20));
+        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/p2.jpg")), "Ali", "did not answered to you", "a day ago", 40));
+        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/profile picture1.jpg")), "John", "think and think then baru answered to you", "a day ago", 60));
     }
 
     @Override
