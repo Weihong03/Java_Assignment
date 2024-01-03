@@ -23,8 +23,6 @@ public class Notification extends javax.swing.JPanel {
     public Notification() {
         initComponents();
         setOpaque(false);
-        scroll.getViewport().setOpaque(false);
-        scroll.setViewportBorder(null);
     }
 
     @Override

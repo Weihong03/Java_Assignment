@@ -4,6 +4,8 @@
  */
 package furniture_sale_ordering_management_system;
 
+import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.DefaultOption;
+import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.GlassPanePopup;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -14,17 +16,19 @@ import javax.swing.JOptionPane;
  * @author Wei Hong
  */
 public class Officer_Home extends javax.swing.JFrame {
-    
+
     private String userID;
 
     public Officer_Home(String userID) {
         this.userID = userID;
-        
+
         initComponents();
+        GlassPanePopup.install(this);
         
+
         jTextField_ID.setText(userID);
         jTextField_ID.setEditable(false);
-        
+
         // Set the title of the window
         setTitle("Officer Home");
 
@@ -97,6 +101,11 @@ public class Officer_Home extends javax.swing.JFrame {
 
         button_notification.setIcon(new javax.swing.ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/icon.png"))); // NOI18N
         button_notification.setPreferredSize(new java.awt.Dimension(35, 35));
+        button_notification.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_notificationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,7 +189,12 @@ public class Officer_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_invoiceActionPerformed
 
     private void button_notificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_notificationActionPerformed
-        // TODO add your handling code here:
+        GlassPanePopup.showPopup(new Notification(), new DefaultOption() {
+            @Override
+            public float opacity() {
+                return 0;
+            }
+        });
     }//GEN-LAST:event_button_notificationActionPerformed
 
     /**
