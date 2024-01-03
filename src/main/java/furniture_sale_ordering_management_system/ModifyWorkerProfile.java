@@ -34,8 +34,13 @@ public class ModifyWorkerProfile extends javax.swing.JFrame {
     public static String Email;
     public static String PhoneNumber;
     public static String Role;
+    private String userID;
 
     private static final String BOOKING_FILE_PATH = "D:\\NetBeansProjects\\Java_Assignment\\src\\main\\java\\furniture_sale_ordering_management_system\\Officer_Salesperson.txt";
+
+    private ModifyWorkerProfile(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 
     /**
@@ -59,7 +64,7 @@ public class ModifyWorkerProfile extends javax.swing.JFrame {
     jTextField_Role.setText(Role);
 }
      
-public ModifyWorkerProfile(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role){
+public ModifyWorkerProfile(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role, String userID){
         this.ID = ID;
         this.Username = Username;
         this.Password = Password;
@@ -68,6 +73,7 @@ public ModifyWorkerProfile(String ID, String Username, String Password, String N
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.Role = Role;
+        this.userID = userID;
         
     initComponents();
         // Set the title of the window
@@ -434,7 +440,7 @@ public ModifyWorkerProfile(String ID, String Username, String Password, String N
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
         dispose();
-        ManageWorkerProfile manageBooking = new ManageWorkerProfile();
+        ManageWorkerProfile manageBooking = new ManageWorkerProfile(userID);
         manageBooking.setVisible(true);
         manageBooking.displayBookings(); // Call the method to display the bookings
     }//GEN-LAST:event_jButton_backActionPerformed
@@ -542,20 +548,7 @@ public ModifyWorkerProfile(String ID, String Username, String Password, String N
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

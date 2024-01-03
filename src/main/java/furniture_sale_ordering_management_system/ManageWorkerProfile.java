@@ -247,7 +247,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             String Role = jTable_profiletable.getValueAt(selectedRowIndex, 7).toString();
 
             // Create an instance of ModifyWorkerProfile and pass the selected data
-            ModifyWorkerProfile modifyProfile = new ModifyWorkerProfile(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+            ModifyWorkerProfile modifyProfile = new ModifyWorkerProfile(ID, Username, Password, Name, Age, Email, PhoneNumber, Role,userID);
             modifyProfile.setInitialValues(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
             modifyProfile.setVisible(true);
         } else {

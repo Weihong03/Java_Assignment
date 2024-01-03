@@ -143,7 +143,7 @@ public class Admin_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_logoutActionPerformed
 
     private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
-        ManageWorkerProfile manageworkerprofile = new ManageWorkerProfile();
+        ManageWorkerProfile manageworkerprofile = new ManageWorkerProfile(userID);
         manageworkerprofile.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_ManageProfileActionPerformed
