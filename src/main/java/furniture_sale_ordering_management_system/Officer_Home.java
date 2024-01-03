@@ -4,6 +4,8 @@
  */
 package furniture_sale_ordering_management_system;
 
+import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.DefaultOption;
+import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.GlassPanePopup;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -21,6 +23,7 @@ public class Officer_Home extends javax.swing.JFrame {
         this.userID = userID;
 
         initComponents();
+        GlassPanePopup.install(this);
 
         jTextField_ID.setText(userID);
         jTextField_ID.setEditable(false);
@@ -185,7 +188,12 @@ public class Officer_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_invoiceActionPerformed
 
     private void button_notificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_notificationActionPerformed
-
+        GlassPanePopup.showPopup(new Notification(), new DefaultOption() {
+            @Override
+            public float opacity() {
+                return 0;
+            }
+        });
     }//GEN-LAST:event_button_notificationActionPerformed
 
     /**
