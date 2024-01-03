@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Shared_item;
+package furniture_sale_ordering_management_system.Shared_item;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Wei Hong
  */
-public class Button extends JButton {
+public class Button extends JButton{
 
     private boolean mousePress;
 
