@@ -253,7 +253,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
     String role = jTextField_Role.getText();
 
     // Read the existing content from the text file
-    String filePath = "Officer_Salesperson.txt";
+    String filePath = "Data/Officer_Salesperson.txt";
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
         StringBuilder content = new StringBuilder();
         String line;

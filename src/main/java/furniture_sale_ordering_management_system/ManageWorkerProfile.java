@@ -268,7 +268,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
 
             // Read the contents of the file into memory
             List<String> lines = new ArrayList<>();
-            try (BufferedReader reader = new BufferedReader(new FileReader("Officer_Salesperson.txt"))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     lines.add(line);
@@ -291,7 +291,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             }
 
             // Write the updated data back to the file
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Officer_Salesperson.txt"))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Officer_Salesperson.txt"))) {
                 for (String line : lines) {
                     writer.write(line);
                     writer.newLine();
@@ -330,7 +330,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
         model.setRowCount(0); // Clear existing data
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Officer_Salesperson.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("ID:")) {

@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField_passwordActionPerformed
 
     private String validateCredentials(String username, String password) {
-        try (BufferedReader adminReader = new BufferedReader(new FileReader("Admin.txt")); BufferedReader SalesOfficerReader = new BufferedReader(new FileReader("Officer_Salesperson.txt"))) {
+        try (BufferedReader adminReader = new BufferedReader(new FileReader("Data/Admin.txt")); BufferedReader SalesOfficerReader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
 
             String line;
             String previousLine = null;

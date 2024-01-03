@@ -185,7 +185,7 @@ public class Signup extends javax.swing.JFrame {
 
     private boolean isUsernameExists(String username) {
         try {
-            FileReader reader = new FileReader("Officer_Salesperson.txt");
+            FileReader reader = new FileReader("Data/Officer_Salesperson.txt");
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
