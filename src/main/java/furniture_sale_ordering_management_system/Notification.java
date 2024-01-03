@@ -10,11 +10,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 /**
@@ -37,12 +37,15 @@ public class Notification extends javax.swing.JPanel {
         jScrollPane_scroll.getViewport().setOpaque(false);
         jScrollPane_scroll.setViewportBorder(null);
         jPanel1.setLayout(new MigLayout("inset 0, fillx, wrap", "[fill]"));
-        loadNotification();
-    }
-    private void loadNotification() {
-        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/p1.jpg")), "Steve", "answered to you", "a day ago", 20));
-        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/p2.jpg")), "Ali", "did not answered to you", "a day ago", 40));
-        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/profile picture1.jpg")), "John", "think and think then baru answered to you", "a day ago", 60));
+        // Get the dimension of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Calculate the center coordinates
+        int centerX = (screenSize.width - getWidth()) / 2;
+        int centerY = (screenSize.height - getHeight()) / 2;
+
+        // Set the location of the window
+        setLocation(centerX, centerY);
     }
 
     @Override
@@ -80,6 +83,7 @@ public class Notification extends javax.swing.JPanel {
 
         jScrollPane_scroll.setBorder(null);
         jScrollPane_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane_scroll.setPreferredSize(new java.awt.Dimension(308, 290));
 
         jPanel1.setOpaque(false);
 
@@ -87,11 +91,11 @@ public class Notification extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 308, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
         jScrollPane_scroll.setViewportView(jPanel1);
@@ -109,11 +113,9 @@ public class Notification extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane_scroll, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane_scroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

@@ -116,12 +116,6 @@ public class Officer_Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -135,6 +129,12 @@ public class Officer_Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(jButton_logout)
                         .addGap(83, 83, 83))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button_notification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,13 +193,12 @@ public class Officer_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_invoiceActionPerformed
 
     private void button_notificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_notificationActionPerformed
-        GlassPanePopup.showPopup(new Notification(), new DefaultOption() {
-            @Override
+        GlassPanePopup.showPopup(new Notification() {
+
             public float opacity() {
                 return 0;
             }
 
-            @Override
             public LayoutCallback getLayoutCallBack(Component parent) {
                 return new DefaultLayoutCallBack(parent) {
                     @Override
@@ -209,7 +208,7 @@ public class Officer_Home extends javax.swing.JFrame {
                             Point bl = button_notification.getLocationOnScreen();
                             int x = bl.x - pl.x;
                             int y = bl.y - pl.y;
-                            y += (1f - getAnimate()) * -10f;
+
                             cw.setBounds(x - cw.getWidth() + button_notification.getWidth(), y + button_notification.getHeight(), cw.getWidth(), cw.getHeight());
                         } else {
                             super.correctBounds(cw);
@@ -218,7 +217,6 @@ public class Officer_Home extends javax.swing.JFrame {
                 };
             }
 
-            @Override
             public String getLayout(Component parent, float animate) {
                 return null;
             }
