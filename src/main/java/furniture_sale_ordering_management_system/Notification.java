@@ -61,6 +61,7 @@ public class Notification extends javax.swing.JPanel {
         jLabel1.setText("Notifications");
 
         jScrollPane_scroll.setBorder(null);
+        jScrollPane_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel1.setOpaque(false);
 
@@ -72,7 +73,7 @@ public class Notification extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
         jScrollPane_scroll.setViewportView(jPanel1);
