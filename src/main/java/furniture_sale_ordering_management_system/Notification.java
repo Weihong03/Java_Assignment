@@ -4,6 +4,9 @@
  */
 package furniture_sale_ordering_management_system;
 
+import furniture_sale_ordering_management_system.Shared_item.ModernScrollBarUI;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -11,6 +14,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollBar;
+import net.miginfocom.swing.MigLayout;
 /**
  *
  * @author Wei Hong
@@ -23,6 +29,20 @@ public class Notification extends javax.swing.JPanel {
     public Notification() {
         initComponents();
         setOpaque(false);
+        JScrollBar sb = jScrollPane_scroll.getVerticalScrollBar();
+        sb.setOpaque(false);
+        sb.setForeground(new Color(33,140,206));
+        sb.setPreferredSize(new Dimension(8,8));
+        sb.setUI(new ModernScrollBarUI());
+        jScrollPane_scroll.getViewport().setOpaque(false);
+        jScrollPane_scroll.setViewportBorder(null);
+        jScrollPane_scroll.setLayout(new MigLayout("inset 0, fillx, wrap", "[fill]"));
+        loadNotification();
+    }
+    private void loadNotification() {
+        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/Images/p1.jpg")), "Steve", "answered to you", "a day ago", 20));
+        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/Images/p2.jpg")), "Ali", "did not answered to you", "a day ago", 40));
+        jScrollPane_scroll.add(new Notification_Item(new ImageIcon(getClass().getResource("/Images/profile picture1.jpg")), "John", "think and think then baru answered to you", "a day ago", 60));
     }
 
     @Override
@@ -71,7 +91,7 @@ public class Notification extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 170, Short.MAX_VALUE)
         );
 
         jScrollPane_scroll.setViewportView(jPanel1);

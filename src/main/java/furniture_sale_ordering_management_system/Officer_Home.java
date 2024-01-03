@@ -4,12 +4,17 @@
  */
 package furniture_sale_ordering_management_system;
 
+import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.DefaultLayoutCallBack;
 import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.DefaultOption;
 import furniture_sale_ordering_management_system.Shared_item.glasspanepopup.GlassPanePopup;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import net.miginfocom.layout.ComponentWrapper;
+import net.miginfocom.layout.LayoutCallback;
 
 /**
  *
@@ -192,6 +197,30 @@ public class Officer_Home extends javax.swing.JFrame {
             @Override
             public float opacity() {
                 return 0;
+            }
+
+            @Override
+            public LayoutCallback getLayoutCallBack(Component parent) {
+                return new DefaultLayoutCallBack(parent) {
+                    @Override
+                    public void correctBounds(ComponentWrapper cw) {
+                        if (parent.isVisible()) {
+                            Point pl = parent.getLocationOnScreen();
+                            Point bl = button_notification.getLocationOnScreen();
+                            int x = bl.x - pl.x;
+                            int y = bl.y - pl.y;
+                            y += (1f - getAnimate()) * -10f;
+                            cw.setBounds(x - cw.getWidth() + button_notification.getWidth(), y + button_notification.getHeight(), cw.getWidth(), cw.getHeight());
+                        } else {
+                            super.correctBounds(cw);
+                        }
+                    }
+                };
+            }
+
+            @Override
+            public String getLayout(Component parent, float animate) {
+                return null;
             }
         });
     }//GEN-LAST:event_button_notificationActionPerformed
