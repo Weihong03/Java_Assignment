@@ -25,7 +25,9 @@ public class Sale_Approval extends javax.swing.JFrame {
     /**
      * Creates new form ManageBooking
      */
-    public Sale_Approval() {
+    public Sale_Approval(String userID) {
+        this.userID = userID;
+        
         initComponents();
         // Set the title of the window
         setTitle("Sale Approval");
@@ -42,6 +44,10 @@ public class Sale_Approval extends javax.swing.JFrame {
 
         // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private Sale_Approval() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

@@ -25,7 +25,9 @@ public class Generate_Invoice extends javax.swing.JFrame {
     /**
      * Creates new form ManageBooking
      */
-    public Generate_Invoice() {
+    public Generate_Invoice(String userID) {
+        this.userID = userID;
+        
         initComponents();
         // Set the title of the window
         setTitle("Generate Invoice");
@@ -42,6 +44,10 @@ public class Generate_Invoice extends javax.swing.JFrame {
 
         // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private Generate_Invoice() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
