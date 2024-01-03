@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
-        <exec.mainClass>com.mycompany.furniture_sale_ordering_management_system.Furniture_Sale_Ordering_Management_System</exec.mainClass>
+        <exec.mainClass>com.mycompany.furniture_sale_ordering_management_system.Furniture_Sale_Ordering_Management_System.Login</exec.mainClass>
     </properties>
     <build>
         <resources>
