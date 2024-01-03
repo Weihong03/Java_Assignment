@@ -6,7 +6,6 @@ import net.miginfocom.layout.BoundSize;
 import net.miginfocom.layout.ComponentWrapper;
 import net.miginfocom.layout.LayoutCallback;
 import net.miginfocom.layout.UnitValue;
-
 /**
  *
  * @author Wei Hong
