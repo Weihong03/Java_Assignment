@@ -261,55 +261,54 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
 
 
     private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
-        int selectedRow = jTable_profiletable.getSelectedRow();
-        if (selectedRow >= 0) {
-            // Adjust the selectedRow index by adding 1
-            selectedRow++;
 
-            // Read the contents of the file into memory
-            List<String> lines = new ArrayList<>();
-            try (BufferedReader reader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    lines.add(line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return; // Exit the method if an error occurs while reading the file
+        // Get the selected row from your table or list
+        int selectedRow = jTable_profiletable.getSelectedRow(); // Replace this with your actual logic to retrieve the selected row
+ 
+        // Adjust the selectedRow index by adding 1
+        selectedRow++;
+ 
+        // Read the contents of the file into memory
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("RoomBooking.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
             }
-
-            // Calculate the line indices of the selected row's data
-            int startIndex = (selectedRow - 1) * 9; // Each row has 9 lines of data
-            int endIndex = startIndex + 8;
-
-            // Remove the selected row's data from the in-memory list
-            if (startIndex >= 0 && endIndex < lines.size()) {
-                lines.subList(startIndex, endIndex + 1).clear();
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select a row to delete."); // Handle the case when the selected row is invalid
-                return;
-            }
-
-            // Write the updated data back to the file
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Officer_Salesperson.txt"))) {
-                for (String line : lines) {
-                    writer.write(line);
-                    writer.newLine();
-                }
-                JOptionPane.showMessageDialog(this, "Selected row deleted successfully.");
-                // Refresh the UI or reload the data if needed
-                refreshTable(this);
-            } catch (IOException e) {
-                e.printStackTrace();
-                 // Exit the method if an error occurs while writing to the file
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return; // Exit the method if an error occurs while reading the file
         }
-
+ 
+        // Calculate the line indices of the selected row's data
+        int startIndex = selectedRow * 9; // Each row has 9 lines of data
+        int endIndex = startIndex + 8;
+ 
+        // Remove the selected row's data from the in-memory list
+        if (startIndex >= 0 && endIndex < lines.size()) {
+            lines.subList(startIndex, endIndex + 1).clear();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete."); // Handle the case when the selected row is invalid
+            return;
+        }
+ 
+        // Write the updated data back to the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("RoomBooking.txt"))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return; // Exit the method if an error occurs while writing to the file
+        }
+ 
+        JOptionPane.showMessageDialog(this, "Selected row deleted successfully.");
+        // Refresh the UI
+        refreshTable();
     }//GEN-LAST:event_jButton_deleteActionPerformed
 
-        private void refreshTable(ManageWorkerProfile currentInstance) {
+        private void refreshTable() {
             // Clear the existing data from the table
             DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
             model.setRowCount(0);
@@ -320,6 +319,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             jTable_profiletable.revalidate();
             jTable_profiletable.repaint();
         }
+        
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
         String searchText = jTextField_search.getText();
