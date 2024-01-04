@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -25,34 +28,23 @@ import javax.swing.JFileChooser;
 public class ModifySales extends javax.swing.JFrame {
 
     public static String ID;
-    public static String Username;
-    public static String Password;
-    public static String Name;
-    public static int Age;
-    public static String Email;
-    public static String PhoneNumber;
-    public static String Role;
+    public static int Amount;
+    public static String Date;
+    public static String Salesperson;
     private String userID;
 
-    private static final String BOOKING_FILE_PATH = "D:\\NetBeansProjects\\Java_Assignment\\src\\main\\java\\furniture_sale_ordering_management_system\\Officer_Salesperson.txt";
+    private static final String BOOKING_FILE_PATH = "Data/Sales_Quotation.txt";
 
-    private ModifySales(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+    private ModifySales(String ID, int Amount, String Date, String Salesperson) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void setInitialValues(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
-        jTextField_ID.setText(ID);
-        jTextField_Username.setText(Username);
-        jTextField_Password.setText(Password);
-        jTextField_Name.setText(Name);
-        jTextField_Age.setText(Integer.toString(Age));
-        jTextField_Email.setText(Email);
-        jTextField_PhoneNumber.setText(PhoneNumber);
-        jTextField_Role.setText(Role);
-    }
-
-    public ModifySales(String ID, int Amount, String Date, String Salesperson, String Confirmation, String Approved_by, String Invoice_generated, String userID) {
+    public ModifySales(String ID, int Amount, String Date, String Salesperson, String userID) {
         this.userID = userID;
+        this.ID = ID;
+        this.Amount = Amount;
+        this.Date = Date;
+        this.Salesperson = Salesperson;
 
         initComponents();
         // Set the title of the window
@@ -72,8 +64,19 @@ public class ModifySales extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set the values in the appropriate fields
+        jTextField_ID.setText(ID);
+        String amount = Integer.toString(Amount);
+        jTextField_Amount.setText(amount);
+        jTextField_Salesperson.setText(Salesperson);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+        try {
+            Date date = sdf.parse(Date);
+            jDateChooser1.setDate(date);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Handle the ParseException appropriately
+        }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -85,21 +88,14 @@ public class ModifySales extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField_Username = new javax.swing.JTextField();
-        jTextField_Age = new javax.swing.JTextField();
-        jTextField_Password = new javax.swing.JTextField();
-        jTextField_Name = new javax.swing.JTextField();
-        jButton_edit = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        jTextField_Amount = new javax.swing.JTextField();
+        jTextField_Salesperson = new javax.swing.JTextField();
+        jButton_modify = new javax.swing.JButton();
         jButton_back = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jTextField_ID = new javax.swing.JTextField();
-        jTextField_Email = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField_PhoneNumber = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField_Role = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,53 +128,35 @@ public class ModifySales extends javax.swing.JFrame {
         jLabel4.setText("Amount:");
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel5.setText("Password:");
+        jLabel5.setText("Date:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel6.setText("Age :");
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel7.setText("Name :");
+        jLabel7.setText("Salesperson:");
 
-        jTextField_Username.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField_Username.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_Amount.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_Amount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_UsernameActionPerformed(evt);
+                jTextField_AmountActionPerformed(evt);
             }
         });
 
-        jTextField_Age.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField_Age.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_Salesperson.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_Salesperson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_AgeActionPerformed(evt);
+                jTextField_SalespersonActionPerformed(evt);
             }
         });
 
-        jTextField_Password.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField_Password.addActionListener(new java.awt.event.ActionListener() {
+        jButton_modify.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_modify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/edit.png"))); // NOI18N
+        jButton_modify.setText("Modify");
+        jButton_modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_PasswordActionPerformed(evt);
+                jButton_modifyActionPerformed(evt);
             }
         });
-
-        jTextField_Name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField_Name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_NameActionPerformed(evt);
-            }
-        });
-
-        jButton_edit.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/edit.png"))); // NOI18N
-        jButton_edit.setText("Modify");
-        jButton_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_editActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel8.setText("Email :");
 
         jButton_back.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton_back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/furniture_sale_ordering_management_system/Images/back.png"))); // NOI18N
@@ -199,18 +177,6 @@ public class ModifySales extends javax.swing.JFrame {
             }
         });
 
-        jTextField_Email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel9.setText("Phone Number :");
-
-        jTextField_PhoneNumber.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel11.setText("Role :");
-
-        jTextField_Role.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-
         jButton1.setText("jButton1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -223,37 +189,26 @@ public class ModifySales extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(95, 95, 95))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
+                        .addGap(322, 322, 322)
                         .addComponent(jButton_back)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton_edit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton_modify))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(172, 172, 172)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel8)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField_Username)
+                            .addComponent(jTextField_Amount)
                             .addComponent(jTextField_ID)
-                            .addComponent(jTextField_Password)
-                            .addComponent(jTextField_Name)
-                            .addComponent(jTextField_Age)
-                            .addComponent(jTextField_Email)
-                            .addComponent(jTextField_Role, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField_Salesperson)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -270,38 +225,21 @@ public class ModifySales extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField_Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Salesperson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_Role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_back)
-                            .addComponent(jButton_edit)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton_back)
+                    .addComponent(jButton_modify))
                 .addGap(47, 47, 47))
         );
 
@@ -319,53 +257,49 @@ public class ModifySales extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_UsernameActionPerformed
+    private void jTextField_AmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_AmountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_UsernameActionPerformed
+    }//GEN-LAST:event_jTextField_AmountActionPerformed
 
-    private void jTextField_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_PasswordActionPerformed
+    private void jTextField_SalespersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_SalespersonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_PasswordActionPerformed
+    }//GEN-LAST:event_jTextField_SalespersonActionPerformed
 
-    private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_NameActionPerformed
-
-    private void jTextField_AgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_AgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_AgeActionPerformed
-
-    private void jButton_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editActionPerformed
+    private void jButton_modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_modifyActionPerformed
         String ID = jTextField_ID.getText();
-        String Username = jTextField_Username.getText();
-        String Password = jTextField_Password.getText();
-        String Name = jTextField_Name.getText();
-        int Age = Integer.parseInt(jTextField_Age.getText());
-        String Email = jTextField_Email.getText();
-        String PhoneNumber = jTextField_PhoneNumber.getText();
-        String Role = jTextField_Role.getText();
+        int Amount = Integer.parseInt(jTextField_Amount.getText());
+        Date selectedDate = jDateChooser1.getDate();
+        // Check if a date is selected
+        if (selectedDate != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+            String formattedDate = sdf.format(selectedDate);
+            String Date = formattedDate;
+        } else {
+            JOptionPane.showMessageDialog(this, "No date is selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        String Salesperson = jTextField_Salesperson.getText();
 
         // Get the selected room
         // Validate input fields
-        if (ID.isEmpty() || Username.isEmpty() || Password.isEmpty() || Name.isEmpty() || Email.isEmpty() || PhoneNumber.isEmpty() || Role.isEmpty()) {
+        if (ID.isEmpty() || Amount.isEmpty() || Date.isEmpty() || Salesperson.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        // Perform the booking
-        boolean isModified = modifyBooking(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+        // Perform the modify
+        boolean isModified = modifySales(ID, Amount,Date,Salesperson);
 
         if (isModified) {
             JOptionPane.showMessageDialog(this, "Profile modified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Failed to modify the profile. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton_editActionPerformed
+    }//GEN-LAST:event_jButton_modifyActionPerformed
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
         dispose();
-        ManageWorkerProfile manageBooking = new ManageWorkerProfile(userID);
-        manageBooking.setVisible(true);
-        manageBooking.displayBookings(); // Call the method to display the bookings
+        Sale_Approval salesApproval = new Sale_Approval(userID);
+        salesApproval.setVisible(true);
+        salesApproval.displaySales(); // Call the method to display the bookings
     }//GEN-LAST:event_jButton_backActionPerformed
 
     private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
@@ -373,7 +307,7 @@ public class ModifySales extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextField_IDActionPerformed
 
-    private boolean modifyBooking(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+    private boolean modifySales(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
         try {
             Path inputFile = Path.of(BOOKING_FILE_PATH);
 
@@ -399,7 +333,7 @@ public class ModifySales extends javax.swing.JFrame {
             }
 
             if (!found) {
-                System.out.println("Profile not found.");
+                System.out.println("Sales Quotation not found.");
                 return false;
             }
 
@@ -448,8 +382,8 @@ public class ModifySales extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModifySales modifyProfile = new ModifySales(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
-                modifyProfile.setVisible(true);
+                ModifySales modifySales = new ModifySales(ID, Amount, Date, Salesperson);
+                modifySales.setVisible(true);
 
             }
         });
@@ -458,26 +392,19 @@ public class ModifySales extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_back;
-    private javax.swing.JButton jButton_edit;
+    private javax.swing.JButton jButton_modify;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField_Age;
-    private javax.swing.JTextField jTextField_Email;
+    private javax.swing.JTextField jTextField_Amount;
     private javax.swing.JTextField jTextField_ID;
-    private javax.swing.JTextField jTextField_Name;
-    private javax.swing.JTextField jTextField_Password;
-    private javax.swing.JTextField jTextField_PhoneNumber;
-    private javax.swing.JTextField jTextField_Role;
-    private javax.swing.JTextField jTextField_Username;
+    private javax.swing.JTextField jTextField_Salesperson;
     // End of variables declaration//GEN-END:variables
 
 }

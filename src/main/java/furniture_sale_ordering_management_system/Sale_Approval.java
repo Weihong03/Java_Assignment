@@ -270,7 +270,7 @@ public class Sale_Approval extends javax.swing.JFrame {
             String Invoice_generated = jTable_Salestable.getValueAt(selectedRowIndex, 6).toString();
 
             // Create an instance of ModifyBooking and pass the selected data
-            ModifySales modifySales = new ModifySales(ID, Amount, Date, Salesperson, Confirmation, Approved_by, Invoice_generated, userID);
+            ModifySales modifySales = new ModifySales(ID, Amount, Date, Salesperson, userID);
             modifySales.setVisible(true);
             this.dispose();
         } else {
