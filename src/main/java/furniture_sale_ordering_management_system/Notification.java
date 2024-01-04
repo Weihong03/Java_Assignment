@@ -17,28 +17,47 @@ import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
+
 /**
  *
  * @author Wei Hong
  */
 public class Notification extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Notification
-     */
     public Notification() {
         initComponents();
         setOpaque(false);
+        initScrollBar();
+        initDummyData();
+        centerWindow();
+    }
+
+    private void initScrollBar() {
         JScrollBar sb = jScrollPane_scroll.getVerticalScrollBar();
         sb.setOpaque(false);
-        sb.setForeground(new Color(33,140,206));
-        sb.setPreferredSize(new Dimension(8,8));
+        sb.setForeground(new Color(33, 140, 206));
+        sb.setPreferredSize(new java.awt.Dimension(8, 8));
         sb.setUI(new ModernScrollBarUI());
         jScrollPane_scroll.getViewport().setOpaque(false);
         jScrollPane_scroll.setViewportBorder(null);
-        jPanel1.setLayout(new MigLayout("inset 0, fillx, wrap", "[fill]"));
+    }
+
+    private void initDummyData() {
+        addDummyRecord("Weihongooi", "just made a Sales Quotation.", "04 Jun 2023", 100);
+        addDummyRecord("Horongwei", "just made a Sales Quotation.", "23 Dec 2023", 2000);
+        addDummyRecord("Leeqiwen", "just made a Sales Quotation.", "01 Jan 2024", 30);
+    }
+
+    private void addDummyRecord(String name, String description, String date, int amount) {
+        Notification_Item notificationItem = new Notification_Item(name, description, date, amount);
+        jPanel1.add(notificationItem);
+        jPanel1.revalidate();
+        jPanel1.repaint();
+    }
+
+    private void centerWindow() {
         // Get the dimension of the screen
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
         // Calculate the center coordinates
         int centerX = (screenSize.width - getWidth()) / 2;
@@ -49,22 +68,22 @@ public class Notification extends javax.swing.JPanel {
     }
 
     @Override
-    protected void paintComponent (Graphics grphcs) {
-        Graphics2D g2=(Graphics2D)grphcs.create();
+    protected void paintComponent(Graphics grphcs) {
+        Graphics2D g2 = (Graphics2D) grphcs.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getBackground());
-        int header=10;
+        int header = 10;
         AffineTransform tran = new AffineTransform();
-        tran.translate(getWidth()-25, 5);
+        tran.translate(getWidth() - 25, 5);
         tran.rotate(Math.toRadians(45));
         Path2D p = new Path2D.Double(new RoundRectangle2D.Double(0, 0, 20, 20, 5, 5), tran);
         Area area = new Area(p);
-        area.add(new Area(new RoundRectangle2D.Double(0, header, getWidth(), getHeight()-header, 10, 10)));
+        area.add(new Area(new RoundRectangle2D.Double(0, header, getWidth(), getHeight() - header, 10, 10)));
         g2.fill(area);
         g2.dispose();
         super.paintComponent(grphcs);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -136,6 +155,6 @@ public class Notification extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane_scroll;
+    public javax.swing.JScrollPane jScrollPane_scroll;
     // End of variables declaration//GEN-END:variables
 }

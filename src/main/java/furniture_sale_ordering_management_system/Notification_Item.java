@@ -4,33 +4,34 @@
  */
 package furniture_sale_ordering_management_system;
 
-import javax.swing.Icon;
 /**
  *
  * @author Wei Hong
  */
 public class Notification_Item extends javax.swing.JPanel {
 
-
-    public Notification_Item(Icon icon, String name, String description, String time, int amount) {
+    public Notification_Item(String name, String description, String date, int amount) {
         initComponents();
-        imageAvatar.setIcon(icon);
+        setData(name, description, date, amount);
+    }
+
+    private void setData(String name, String description, String date, int amount) {
         jLabel_name.setText(name);
         jLabel_description.setText(description);
-        jLabel_time.setText(time);
+        jLabel_date.setText(date);
         jLabel_amount.setText(String.valueOf(amount));
     }
 
-    
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel_name = new javax.swing.JLabel();
-        jLabel_time = new javax.swing.JLabel();
+        jLabel_date = new javax.swing.JLabel();
         jLabel_description = new javax.swing.JLabel();
         jLabel_amount = new javax.swing.JLabel();
-        imageAvatar = new furniture_sale_ordering_management_system.Images.ImageAvatar();
 
         setOpaque(false);
 
@@ -38,9 +39,9 @@ public class Notification_Item extends javax.swing.JPanel {
         jLabel_name.setForeground(new java.awt.Color(106, 106, 106));
         jLabel_name.setText("Name");
 
-        jLabel_time.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jLabel_time.setForeground(new java.awt.Color(134, 134, 134));
-        jLabel_time.setText("Time");
+        jLabel_date.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        jLabel_date.setForeground(new java.awt.Color(134, 134, 134));
+        jLabel_date.setText("Date");
 
         jLabel_description.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel_description.setForeground(new java.awt.Color(134, 134, 134));
@@ -50,51 +51,41 @@ public class Notification_Item extends javax.swing.JPanel {
         jLabel_amount.setForeground(new java.awt.Color(134, 134, 134));
         jLabel_amount.setText("Amount");
 
-        imageAvatar.setPreferredSize(new java.awt.Dimension(50, 50));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_name)
-                    .addComponent(jLabel_time))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel_amount))
-                    .addComponent(jLabel_description))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(jLabel_date))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel_description)
+                    .addComponent(jLabel_amount))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel_name)
-                            .addComponent(jLabel_description))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel_time)
-                            .addComponent(jLabel_amount)))
-                    .addComponent(imageAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_name)
+                    .addComponent(jLabel_description))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_date)
+                    .addComponent(jLabel_amount))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private furniture_sale_ordering_management_system.Images.ImageAvatar imageAvatar;
     private javax.swing.JLabel jLabel_amount;
+    private javax.swing.JLabel jLabel_date;
     private javax.swing.JLabel jLabel_description;
     private javax.swing.JLabel jLabel_name;
-    private javax.swing.JLabel jLabel_time;
     // End of variables declaration//GEN-END:variables
 }
