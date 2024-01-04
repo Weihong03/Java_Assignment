@@ -315,28 +315,18 @@ public class ModifySales extends javax.swing.JFrame {
             for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
             if (line.startsWith("ID: " + ID + ",")) {
-                // Modify the Amount field
                 lines.set(i + 1, "Amount: RM" + Amount + ",");
-                
-                // Modify the Date field
                 lines.set(i + 2, "Date: " + Date + ",");
-                
-                // Modify the Salesperson field
                 lines.set(i + 3, "Salesperson: " + Salesperson + ",");
-                
-                // If you have more fields to modify, add similar lines for them
-
-                // Write the modified lines back to the file
                 Files.write(inputFile, lines, StandardCharsets.UTF_8);
-                
-                return true; // Successfully modified
+                return true; 
             }
         }
     } catch (IOException e) {
-        e.printStackTrace(); // Handle the exception based on your needs
+        e.printStackTrace(); 
     }
 
-    return false; // Failed to modify
+    return false; 
 }
 
     public static void main(String args[]) {
