@@ -141,6 +141,7 @@ public class Admin_Home extends javax.swing.JFrame {
     private void jButton_ManageProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageProfileActionPerformed
         ManageWorkerProfile manageworkerprofile = new ManageWorkerProfile(userID);
         manageworkerprofile.setVisible(true);
+        manageworkerprofile.displayBookings();
         this.dispose();
     }//GEN-LAST:event_jButton_ManageProfileActionPerformed
 
@@ -185,6 +186,7 @@ public class Admin_Home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Admin_Home().setVisible(true);
+                
             }
         });
     }

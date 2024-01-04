@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
  */
 public class ManageWorkerProfile extends javax.swing.JFrame {
 
-    private String userID;
+    private static String userID;
 
     public ManageWorkerProfile(String userID) {
         this.userID = userID;
@@ -49,9 +49,6 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private ManageWorkerProfile() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,13 +263,12 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
 
         // Read the contents of the file into memory
         List<String> lines = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("RoomBooking.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 lines.add(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
             return; // Exit the method if an error occurs while reading the file
         }
 
@@ -289,13 +285,12 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         }
 
         // Write the updated data back to the file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("RoomBooking.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Officer_Salesperson.txt"))) {
             for (String line : lines) {
                 writer.write(line);
                 writer.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
             return; // Exit the method if an error occurs while writing to the file
         }
 
@@ -305,18 +300,15 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_deleteActionPerformed
 
     private void refreshTable() {
-        // Clear the existing data from the table
-        DefaultTableModel model = (DefaultTableModel) jTable_bookingtable.getModel();
-        model.setRowCount(0);
+    // Clear the existing data from the table
+    DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
+    model.setRowCount(0);
 
-        dispose();
-        ManageBooking manageBooking = new ManageBooking();
-        manageBooking.setVisible(true);
-        manageBooking.displayBookings(); // Call the method to display the bookings
+    displayBookings(); // Call the method to display the bookings
 
-        jTable_bookingtable.revalidate();
-        jTable_bookingtable.repaint();
-    }
+    jTable_profiletable.revalidate();
+    jTable_profiletable.repaint();
+}
 
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
@@ -324,40 +316,40 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         searchBookings(searchText);
     }//GEN-LAST:event_jTextField_searchActionPerformed
 
-    public void displayBookings() {
-        DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
-        model.setRowCount(0); // Clear existing data
+   public void displayBookings() {
+    DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
+    model.setRowCount(0); // Clear existing data
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.startsWith("ID:")) {
-                    String[] rowData = new String[8];
-                    rowData[0] = line.substring(4); // Extract ID value
+    try (BufferedReader br = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (line.startsWith("ID:")) {
+                String[] rowData = new String[8];
+                rowData[0] = line.substring(4); // Extract ID value
 
-                    for (int i = 1; i < 8; i++) {
-                        line = br.readLine();
-                        if (line != null && line.contains(": ")) {
-                            String[] parts = line.split(": ", 2);
-                            if (parts.length == 2) {
-                                rowData[i] = parts[1];
-                            } else {
-                                // Handle unexpected line format
-                                rowData[i] = " ";
-                            }
+                for (int i = 1; i < 8; i++) {
+                    line = br.readLine();
+                    if (line != null && line.contains(": ")) {
+                        String[] parts = line.split(": ", 2);
+                        if (parts.length == 2) {
+                            rowData[i] = parts[1];
                         } else {
                             // Handle unexpected line format
                             rowData[i] = " ";
                         }
+                    } else {
+                        // Handle unexpected line format
+                        rowData[i] = " ";
                     }
-                    model.addRow(rowData);
                 }
+                model.addRow(rowData);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading the file: " + e.getMessage());
         }
+    } catch (IOException e) {
+        e.printStackTrace(); // Print the stack trace to identify the issue
+        JOptionPane.showMessageDialog(this, "Error reading the file: " + e.getMessage());
     }
+}
 
     public void searchBookings(String searchText) {
         TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable_profiletable.getModel());
@@ -406,7 +398,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ManageWorkerProfile manageProfile = new ManageWorkerProfile();
+                ManageWorkerProfile manageProfile = new ManageWorkerProfile(userID);
                 manageProfile.setVisible(true);
                 manageProfile.displayBookings(); // Call the method to display the bookings on startup
             }
