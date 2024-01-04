@@ -281,12 +281,12 @@ public class ModifySales extends javax.swing.JFrame {
 
         // Get the selected room
         // Validate input fields
-        if (ID.isEmpty() || Amount.isEmpty() || Date.isEmpty() || Salesperson.isEmpty()) {
+        if (ID.isEmpty() || Amount <= 0 || Date.isEmpty() || Salesperson.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         // Perform the modify
-        boolean isModified = modifySales(ID, Amount,Date,Salesperson);
+        boolean isModified = modifySales(ID,Amount,Date,Salesperson);
 
         if (isModified) {
             JOptionPane.showMessageDialog(this, "Profile modified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -307,7 +307,7 @@ public class ModifySales extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextField_IDActionPerformed
 
-    private boolean modifySales(String ID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+    private boolean modifySales(String ID, int Amount, String Date, String Salesperson) {
         try {
             Path inputFile = Path.of(BOOKING_FILE_PATH);
 
