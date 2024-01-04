@@ -23,28 +23,81 @@ import javax.swing.JOptionPane;
 public class Sales_Officer_Profile extends javax.swing.JFrame {
     
     public static String userID;
-    public static String Username;
-    public static String Password;
-    public static String Name;
-    public static int Age;
-    public static String Email;
-    public static String PhoneNumber;
-    public static String Role;
 
-    private static final String BOOKING_FILE_PATH = "D:\\NetBeansProjects\\Java_Assignment\\src\\main\\java\\furniture_sale_ordering_management_system\\Officer_Salesperson.txt";
 
-    public void setInitialValues(String userID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+  
+    public void setInitialValues(String userID) {
     jTextField_ID.setText(userID);
-    jTextField_Username.setText(Username);
-    jTextField_Password.setText(Password);
-    jTextField_Name.setText(Name);
-    jTextField_Age.setText(Integer.toString(Age));
-    jTextField_Email.setText(Email);
-    jTextField_PhoneNumber.setText(PhoneNumber);
-    jTextField_Role.setText(Role);
     }
     
-    public Sales_Officer_Profile(String userID, String Username, String Password, String Name, int Age, String Email, String PhoneNumber, String Role) {
+public void setInitialValuesFromUserID(String userID) {
+    // Read the data from the file based on the userID
+    try (BufferedReader reader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.contains("ID: " + userID)) {
+                // Found the data for the specified userID
+                String[] values = new String[7];
+                for (int i = 0; i < 8; i++) {
+                    // Read the next line
+                    line = reader.readLine();
+                    if (line != null) {
+                        // Print the line to see its content
+                        System.out.println("Line: " + line);
+
+                        // Split the line using ":" as delimiter
+                        String[] parts = line.split(":");
+                        if (parts.length > 1) {
+                            // Trim and store the value
+                            values[i] = parts[1].trim();
+                            // Print the parsed value
+                            System.out.println("Parsed Value: " + values[i]);
+                        } else {
+                            // Handle the case where there's no ":" in the line
+                            values[i] = "";
+                            System.out.println("Parsed Value: (empty)");
+                        }
+                    } else {
+                        // Handle the case where there are not enough lines in the file
+                        values[i] = "";
+                        System.out.println("Parsed Value: (empty)");
+                        break; // Exit the loop if there are not enough lines
+                    }
+                }
+
+                // Set the initial values, handling the NumberFormatException for Age
+                try {
+                    setInitialValues(values[0], values[1], values[2], values[3], parseAge(values[4]),
+                            values[5], values[6], values[7]);
+                    return; // Exit the loop after setting the values
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Invalid age format in the file.");
+                    e.printStackTrace(); // Add this line to print the exception details
+                    return;
+                }
+            }
+        }
+
+        // If the userID is not found, you may want to handle this case
+        JOptionPane.showMessageDialog(this, "User ID not found.");
+    } catch (IOException e) {
+        e.printStackTrace(); // Handle the exception according to your application's requirements
+    }
+}
+
+public static int parseAge(String ageString) {
+    try {
+        return Integer.parseInt(ageString);
+    } catch (NumberFormatException e) {
+        throw new RuntimeException("Invalid age format: " + ageString, e);
+    }
+}
+
+
+
+    
+    
+    public Sales_Officer_Profile(String userID) {
         
         initComponents();
         // Set the title of the window
@@ -240,7 +293,7 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
     private void jTextField_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_NameActionPerformed
-
+   
     private void jButton_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UpdateActionPerformed
     String id = jTextField_ID.getText();
     String username = jTextField_Username.getText();
@@ -289,17 +342,18 @@ public class Sales_Officer_Profile extends javax.swing.JFrame {
 }
 
 private void updateContent(StringBuilder content, String label, String value) {
-    int startIndex = content.indexOf(label);
+   int startIndex = content.indexOf(label);
     if (startIndex != -1) {
         int endIndex = content.indexOf(label) + label.length();
         content.replace(endIndex, content.indexOf("\n", endIndex), value);
     } else {
-        System.out.println("Label not found: " + label);
+        // Label not found, add the new data at the end of the file
+        content.append(label).append(" ").append(value).append("\n");
     }
     }//GEN-LAST:event_jButton_UpdateActionPerformed
 
     private void jButton_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_backActionPerformed
-        Sales_Home home = new Sales_Home(userID,Username,Password,Name,Age,Email,PhoneNumber,Role);
+        Sales_Home home = new Sales_Home(userID);
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton_backActionPerformed
@@ -337,8 +391,9 @@ private void updateContent(StringBuilder content, String label, String value) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Sales_Officer_Profile salesOfficerProfile = new Sales_Officer_Profile(userID, Username, Password, Name, Age, Email, PhoneNumber, Role);
+                Sales_Officer_Profile salesOfficerProfile = new Sales_Officer_Profile(userID);
                 salesOfficerProfile.setVisible(true);
+                salesOfficerProfile.setInitialValuesFromUserID(userID);
             }
         });
     }
@@ -364,5 +419,13 @@ private void updateContent(StringBuilder content, String label, String value) {
     private javax.swing.JTextField jTextField_Role;
     private javax.swing.JTextField jTextField_Username;
     // End of variables declaration//GEN-END:variables
+
+
+
+    private void setInitialValues(String value, String value0, String value1, String value2, int parseAge, String value3, String value4, String value5) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+
 
 }
