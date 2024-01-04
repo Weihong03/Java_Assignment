@@ -1,12 +1,9 @@
 package furniture_sale_ordering_management_system;
 
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.RowFilter;
@@ -23,17 +20,17 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Wei Hong
  */
 public class ManageWorkerProfile extends javax.swing.JFrame {
+
     private String userID;
 
     public ManageWorkerProfile(String userID) {
         this.userID = userID;
-        
+
         initComponents();
         // Set the title of the window
         setTitle("Manage Worker Profile");
@@ -247,15 +244,14 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             String Role = jTable_profiletable.getValueAt(selectedRowIndex, 7).toString();
 
             // Create an instance of ModifyWorkerProfile and pass the selected data
-            ModifyWorkerProfile modifyProfile = new ModifyWorkerProfile(ID, Username, Password, Name, Age, Email, PhoneNumber, Role,userID);
+            ModifyWorkerProfile modifyProfile = new ModifyWorkerProfile(ID, Username, Password, Name, Age, Email, PhoneNumber, Role, userID);
             modifyProfile.setInitialValues(ID, Username, Password, Name, Age, Email, PhoneNumber, Role);
             modifyProfile.setVisible(true);
         } else {
             // No row selected, display an error message or perform appropriate handling
             JOptionPane.showMessageDialog(this, "Please select a row to modify.");
         }
-        
-        
+
         dispose();
     }//GEN-LAST:event_jButton_modifyActionPerformed
 
@@ -264,10 +260,10 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
 
         // Get the selected row from your table or list
         int selectedRow = jTable_profiletable.getSelectedRow(); // Replace this with your actual logic to retrieve the selected row
- 
+
         // Adjust the selectedRow index by adding 1
         selectedRow++;
- 
+
         // Read the contents of the file into memory
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("RoomBooking.txt"))) {
@@ -279,11 +275,11 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             e.printStackTrace();
             return; // Exit the method if an error occurs while reading the file
         }
- 
+
         // Calculate the line indices of the selected row's data
         int startIndex = selectedRow * 9; // Each row has 9 lines of data
         int endIndex = startIndex + 8;
- 
+
         // Remove the selected row's data from the in-memory list
         if (startIndex >= 0 && endIndex < lines.size()) {
             lines.subList(startIndex, endIndex + 1).clear();
@@ -291,7 +287,7 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a row to delete."); // Handle the case when the selected row is invalid
             return;
         }
- 
+
         // Write the updated data back to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("RoomBooking.txt"))) {
             for (String line : lines) {
@@ -302,24 +298,26 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
             e.printStackTrace();
             return; // Exit the method if an error occurs while writing to the file
         }
- 
+
         JOptionPane.showMessageDialog(this, "Selected row deleted successfully.");
         // Refresh the UI
         refreshTable();
     }//GEN-LAST:event_jButton_deleteActionPerformed
 
-        private void refreshTable() {
-            // Clear the existing data from the table
-            DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
-            model.setRowCount(0);
+    private void refreshTable() {
+        // Clear the existing data from the table
+        DefaultTableModel model = (DefaultTableModel) jTable_bookingtable.getModel();
+        model.setRowCount(0);
 
-            // Call displayBookings on the existing instance to reload the data
-            currentInstance.displayBookings();
+        dispose();
+        ManageBooking manageBooking = new ManageBooking();
+        manageBooking.setVisible(true);
+        manageBooking.displayBookings(); // Call the method to display the bookings
 
-            jTable_profiletable.revalidate();
-            jTable_profiletable.repaint();
-        }
-        
+        jTable_bookingtable.revalidate();
+        jTable_bookingtable.repaint();
+    }
+
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
         String searchText = jTextField_search.getText();
