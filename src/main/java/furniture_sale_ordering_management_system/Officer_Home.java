@@ -183,6 +183,7 @@ public class Officer_Home extends javax.swing.JFrame {
     private void jButton_saleapprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saleapprovalActionPerformed
         Sale_Approval approval = new Sale_Approval(userID);
         approval.setVisible(true);
+        approval.displaySales();
         this.dispose();
     }//GEN-LAST:event_jButton_saleapprovalActionPerformed
 

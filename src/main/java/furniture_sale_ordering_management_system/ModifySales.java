@@ -286,12 +286,12 @@ public class ModifySales extends javax.swing.JFrame {
             return;
         }
         // Perform the modify
-        boolean isModified = modifySales(ID,Amount,Date,Salesperson);
+        boolean isModified = modifySales(ID, Amount, Date, Salesperson);
 
         if (isModified) {
             JOptionPane.showMessageDialog(this, "Profile modified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Failed to modify the profile. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Failed to modify the quotation. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton_modifyActionPerformed
 
@@ -304,7 +304,6 @@ public class ModifySales extends javax.swing.JFrame {
 
     private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jTextField_IDActionPerformed
 
     private boolean modifySales(String ID, int Amount, String Date, String Salesperson) {
@@ -314,19 +313,29 @@ public class ModifySales extends javax.swing.JFrame {
             List<String> lines = Files.readAllLines(inputFile, StandardCharsets.UTF_8);
 
             boolean found = false;
-            for (int i = 0; i < lines.size() - 8; i += 9) {
+            for (int i = 0; i < lines.size() - 10; i += 11) {
                 String line = lines.get(i);
                 if (line.equals("ID: " + ID)) {
-                    // Modify the existing booking
-                    lines.set(i, "ID: " + ID);
-                    lines.set(i + 1, "Username: " + Username);
-                    lines.set(i + 2, "Password: " + Password);
-                    lines.set(i + 3, "Name: " + Name);
-                    lines.set(i + 4, "Age: " + Age);
-                    lines.set(i + 5, "Email: " + Email);
-                    lines.set(i + 6, "PhoneNumber: " + PhoneNumber);
-                    lines.set(i + 7, "Role: " + Role);
+                    // Modify the existing sales entry
+                    lines.set(i, "ID: " + ID + ",");
+                    lines.set(i + 1, "Amount: RM" + Amount + ",");
+                    lines.set(i + 2, "Date: " + Date + ",");
+                    lines.set(i + 3, "Salesperson: " + Salesperson + ",");
+
+                    // Retain the existing values for Confirmation, Officer, Invoice, and Status
+                    String confirmation = lines.get(i + 4).split(": ")[1].trim();
+                    String officer = lines.get(i + 5).split(": ")[1].trim();
+                    String invoice = lines.get(i + 6).split(": ")[1].trim();
+                    String status = lines.get(i + 7).split(": ")[1].trim();
+
+                    lines.set(i + 4, "Confirmation: " + confirmation + ",");
+                    lines.set(i + 5, "Officer: " + officer + ",");
+                    lines.set(i + 6, "Invoice: " + invoice + ",");
+                    lines.set(i + 7, "Status: " + status + ",");
+
+                    // Retain the existing format line
                     lines.set(i + 8, "---------------------------");
+
                     found = true;
                     break;
                 }

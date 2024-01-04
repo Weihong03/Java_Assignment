@@ -49,7 +49,6 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -255,64 +254,64 @@ public class ManageWorkerProfile extends javax.swing.JFrame {
 
     private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
 
-      int selectedRow = jTable_profiletable.getSelectedRow();
+        int selectedRow = jTable_profiletable.getSelectedRow();
 
-if (selectedRow == -1) {
-    JOptionPane.showMessageDialog(this, "Please select a row to delete.");
-    return;
-}
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
 
 // Read the contents of the file into memory
-List<String> lines = new ArrayList<>();
-try (BufferedReader reader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
-    String line;
-    while ((line = reader.readLine()) != null) {
-        lines.add(line);
-    }
-} catch (IOException e) {
-    e.printStackTrace();
-    return; // Exit the method if an error occurs while reading the file
-}
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return; // Exit the method if an error occurs while reading the file
+        }
 
 // Calculate the line indices of the selected row's data
-int startIndex = selectedRow * 9; // Each row has 9 lines of data
-int endIndex = startIndex + 8;
+        int startIndex = selectedRow * 9; // Each row has 9 lines of data
+        int endIndex = startIndex + 8;
 
 // Check if the calculated indices are within the bounds of the list
-if (startIndex >= 0 && endIndex < lines.size()) {
-    // Remove the selected row's data from the in-memory list
-    lines.subList(startIndex, endIndex + 1).clear();
-} else {
-    JOptionPane.showMessageDialog(this, "Please select a valid row to delete.");
-    return;
-}
+        if (startIndex >= 0 && endIndex < lines.size()) {
+            // Remove the selected row's data from the in-memory list
+            lines.subList(startIndex, endIndex + 1).clear();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a valid row to delete.");
+            return;
+        }
 
 // Write the updated data back to the file
-try (BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Officer_Salesperson.txt"))) {
-    for (String line : lines) {
-        writer.write(line);
-        writer.newLine();
-    }
-} catch (IOException e) {
-    e.printStackTrace();
-    return; // Exit the method if an error occurs while writing to the file
-}
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Officer_Salesperson.txt"))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return; // Exit the method if an error occurs while writing to the file
+        }
 
-JOptionPane.showMessageDialog(this, "Selected row deleted successfully.");
+        JOptionPane.showMessageDialog(this, "Selected row deleted successfully.");
 // Refresh the UI
-refreshTable();
+        refreshTable();
     }//GEN-LAST:event_jButton_deleteActionPerformed
 
     private void refreshTable() {
-    // Clear the existing data from the table
-    DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
-    model.setRowCount(0);
+        // Clear the existing data from the table
+        DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
+        model.setRowCount(0);
 
-    displayBookings(); // Call the method to display the bookings
+        displayBookings(); // Call the method to display the bookings
 
-    jTable_profiletable.revalidate();
-    jTable_profiletable.repaint();
-}
+        jTable_profiletable.revalidate();
+        jTable_profiletable.repaint();
+    }
 
 
     private void jTextField_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchActionPerformed
@@ -320,40 +319,40 @@ refreshTable();
         searchBookings(searchText);
     }//GEN-LAST:event_jTextField_searchActionPerformed
 
-   public void displayBookings() {
-    DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
-    model.setRowCount(0); // Clear existing data
+    public void displayBookings() {
+        DefaultTableModel model = (DefaultTableModel) jTable_profiletable.getModel();
+        model.setRowCount(0); // Clear existing data
 
-    try (BufferedReader br = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
-        String line;
-        while ((line = br.readLine()) != null) {
-            if (line.startsWith("ID:")) {
-                String[] rowData = new String[8];
-                rowData[0] = line.substring(4); // Extract ID value
+        try (BufferedReader br = new BufferedReader(new FileReader("Data/Officer_Salesperson.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.startsWith("ID:")) {
+                    String[] rowData = new String[8];
+                    rowData[0] = line.substring(4); // Extract ID value
 
-                for (int i = 1; i < 8; i++) {
-                    line = br.readLine();
-                    if (line != null && line.contains(": ")) {
-                        String[] parts = line.split(": ", 2);
-                        if (parts.length == 2) {
-                            rowData[i] = parts[1];
+                    for (int i = 1; i < 8; i++) {
+                        line = br.readLine();
+                        if (line != null && line.contains(": ")) {
+                            String[] parts = line.split(": ", 2);
+                            if (parts.length == 2) {
+                                rowData[i] = parts[1];
+                            } else {
+                                // Handle unexpected line format
+                                rowData[i] = " ";
+                            }
                         } else {
                             // Handle unexpected line format
                             rowData[i] = " ";
                         }
-                    } else {
-                        // Handle unexpected line format
-                        rowData[i] = " ";
                     }
+                    model.addRow(rowData);
                 }
-                model.addRow(rowData);
             }
+        } catch (IOException e) {
+            e.printStackTrace(); // Print the stack trace to identify the issue
+            JOptionPane.showMessageDialog(this, "Error reading the file: " + e.getMessage());
         }
-    } catch (IOException e) {
-        e.printStackTrace(); // Print the stack trace to identify the issue
-        JOptionPane.showMessageDialog(this, "Error reading the file: " + e.getMessage());
     }
-}
 
     public void searchBookings(String searchText) {
         TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable_profiletable.getModel());

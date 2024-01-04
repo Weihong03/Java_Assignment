@@ -300,8 +300,8 @@ public class Sale_Approval extends javax.swing.JFrame {
         }
 
         // Calculate the line indices of the selected row's data
-        int startIndex = selectedRow * 9; // Each row has 9 lines of data
-        int endIndex = startIndex + 8;
+        int startIndex = (selectedRow - 1) * 11; // Each row has 11 lines of data
+        int endIndex = startIndex + 10;
 
         // Remove the selected row's data from the in-memory list
         if (startIndex >= 0 && endIndex < lines.size()) {
@@ -312,7 +312,7 @@ public class Sale_Approval extends javax.swing.JFrame {
         }
 
         // Write the updated data back to the file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("RoomBooking.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Data/Sales_Quotation.txt"))) {
             for (String line : lines) {
                 writer.write(line);
                 writer.newLine();
@@ -339,7 +339,7 @@ public class Sale_Approval extends javax.swing.JFrame {
     private void jButton_rejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_rejectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_rejectActionPerformed
-    
+
     private void refreshTable() {
         // Clear the existing data from the table
         DefaultTableModel model = (DefaultTableModel) jTable_Salestable.getModel();
@@ -353,22 +353,25 @@ public class Sale_Approval extends javax.swing.JFrame {
         jTable_Salestable.revalidate();
         jTable_Salestable.repaint();
     }
-    
+
     public void displaySales() {
         DefaultTableModel model = (DefaultTableModel) jTable_Salestable.getModel();
         model.setRowCount(0); // Clear existing data
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Data/Sale_Approval.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Data/Sales_Quotation.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.equals("---------------------------")) {
+                if (line.startsWith("ID: ")) {
                     String[] rowData = new String[8];
-                    for (int i = 0; i < 8; i++) {
+                    // Remove trailing comma if present in the ID
+                    rowData[0] = line.split(": ")[1].replaceAll(",\\s*$", "").trim();
+                    for (int i = 1; i < 8; i++) {
                         line = br.readLine();
                         if (line != null && line.contains(": ")) {
                             String[] parts = line.split(": ", 2);
                             if (parts.length == 2) {
-                                rowData[i] = parts[1];
+                                // Remove trailing comma if present
+                                rowData[i] = parts[1].replaceAll(",\\s*$", "");
                             } else {
                                 // Handle unexpected line format
                                 rowData[i] = " ";
@@ -385,7 +388,7 @@ public class Sale_Approval extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
     public void searchSales(String searchText) {
         TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTable_Salestable.getModel());
         jTable_Salestable.setRowSorter(rowSorter);
@@ -433,6 +436,7 @@ public class Sale_Approval extends javax.swing.JFrame {
             public void run() {
                 Sale_Approval approval = new Sale_Approval();
                 approval.setVisible(true);
+                approval.displaySales();
             }
         });
     }
