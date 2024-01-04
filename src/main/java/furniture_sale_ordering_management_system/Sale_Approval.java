@@ -262,7 +262,8 @@ public class Sale_Approval extends javax.swing.JFrame {
         if (selectedRowIndex >= 0) {
             // Get the values from the selected row
             String ID = jTable_Salestable.getValueAt(selectedRowIndex, 0).toString();
-            int Amount = Integer.parseInt(jTable_Salestable.getValueAt(selectedRowIndex, 1).toString());
+            // Remove "RM" from the string before parsing
+            int Amount = Integer.parseInt(jTable_Salestable.getValueAt(selectedRowIndex, 1).toString().replace("RM", ""));
             String Date = jTable_Salestable.getValueAt(selectedRowIndex, 2).toString();
             String Salesperson = jTable_Salestable.getValueAt(selectedRowIndex, 3).toString();
             String Confirmation = jTable_Salestable.getValueAt(selectedRowIndex, 4).toString();

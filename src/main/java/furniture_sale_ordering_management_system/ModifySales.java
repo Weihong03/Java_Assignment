@@ -289,7 +289,7 @@ public class ModifySales extends javax.swing.JFrame {
         boolean isModified = modifySales(ID, Amount, Date, Salesperson);
 
         if (isModified) {
-            JOptionPane.showMessageDialog(this, "Profile modified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Quotation modified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Failed to modify the quotation. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -312,48 +312,32 @@ public class ModifySales extends javax.swing.JFrame {
 
             List<String> lines = Files.readAllLines(inputFile, StandardCharsets.UTF_8);
 
-            boolean found = false;
-            for (int i = 0; i < lines.size() - 10; i += 11) {
-                String line = lines.get(i);
-                if (line.equals("ID: " + ID)) {
-                    // Modify the existing sales entry
-                    lines.set(i, "ID: " + ID + ",");
-                    lines.set(i + 1, "Amount: RM" + Amount + ",");
-                    lines.set(i + 2, "Date: " + Date + ",");
-                    lines.set(i + 3, "Salesperson: " + Salesperson + ",");
+            for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.startsWith("ID: " + ID + ",")) {
+                // Modify the Amount field
+                lines.set(i + 1, "Amount: RM" + Amount + ",");
+                
+                // Modify the Date field
+                lines.set(i + 2, "Date: " + Date + ",");
+                
+                // Modify the Salesperson field
+                lines.set(i + 3, "Salesperson: " + Salesperson + ",");
+                
+                // If you have more fields to modify, add similar lines for them
 
-                    // Retain the existing values for Confirmation, Officer, Invoice, and Status
-                    String confirmation = lines.get(i + 4).split(": ")[1].trim();
-                    String officer = lines.get(i + 5).split(": ")[1].trim();
-                    String invoice = lines.get(i + 6).split(": ")[1].trim();
-                    String status = lines.get(i + 7).split(": ")[1].trim();
-
-                    lines.set(i + 4, "Confirmation: " + confirmation + ",");
-                    lines.set(i + 5, "Officer: " + officer + ",");
-                    lines.set(i + 6, "Invoice: " + invoice + ",");
-                    lines.set(i + 7, "Status: " + status + ",");
-
-                    // Retain the existing format line
-                    lines.set(i + 8, "---------------------------");
-
-                    found = true;
-                    break;
-                }
+                // Write the modified lines back to the file
+                Files.write(inputFile, lines, StandardCharsets.UTF_8);
+                
+                return true; // Successfully modified
             }
-
-            if (!found) {
-                System.out.println("Sales Quotation not found.");
-                return false;
-            }
-
-            Files.write(inputFile, lines, StandardCharsets.UTF_8, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
-
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
         }
+    } catch (IOException e) {
+        e.printStackTrace(); // Handle the exception based on your needs
     }
+
+    return false; // Failed to modify
+}
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
