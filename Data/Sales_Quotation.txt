@@ -1,0 +1,7 @@
+ID: Q001,
+Amount: RM20,
+Date: 20-08-2003,
+Salesperson: Weihongooi,
+Confirmation: Default,
+Invoice: No,
+Status: In Progress,
