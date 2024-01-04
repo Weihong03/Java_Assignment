@@ -269,13 +269,15 @@ public class ModifySales extends javax.swing.JFrame {
         String ID = jTextField_ID.getText();
         int Amount = Integer.parseInt(jTextField_Amount.getText());
         Date selectedDate = jDateChooser1.getDate();
+        String Date = "";  // Declare the variable here
+
         // Check if a date is selected
         if (selectedDate != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
-            String formattedDate = sdf.format(selectedDate);
-            String Date = formattedDate;
+            Date = sdf.format(selectedDate);  // Assign the formatted date to the variable
         } else {
             JOptionPane.showMessageDialog(this, "No date is selected.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         String Salesperson = jTextField_Salesperson.getText();
 
@@ -285,6 +287,7 @@ public class ModifySales extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please fill in all the required fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         // Perform the modify
         boolean isModified = modifySales(ID, Amount, Date, Salesperson);
 
@@ -313,21 +316,21 @@ public class ModifySales extends javax.swing.JFrame {
             List<String> lines = Files.readAllLines(inputFile, StandardCharsets.UTF_8);
 
             for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
-            if (line.startsWith("ID: " + ID + ",")) {
-                lines.set(i + 1, "Amount: RM" + Amount + ",");
-                lines.set(i + 2, "Date: " + Date + ",");
-                lines.set(i + 3, "Salesperson: " + Salesperson + ",");
-                Files.write(inputFile, lines, StandardCharsets.UTF_8);
-                return true; 
+                String line = lines.get(i);
+                if (line.startsWith("ID: " + ID + ",")) {
+                    lines.set(i + 1, "Amount: RM" + Amount + ",");
+                    lines.set(i + 2, "Date: " + Date + ",");
+                    lines.set(i + 3, "Salesperson: " + Salesperson + ",");
+                    Files.write(inputFile, lines, StandardCharsets.UTF_8);
+                    return true;
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace(); 
-    }
 
-    return false; 
-}
+        return false;
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
