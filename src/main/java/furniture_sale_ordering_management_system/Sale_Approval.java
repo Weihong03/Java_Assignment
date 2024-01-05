@@ -361,10 +361,8 @@ public class Sale_Approval extends javax.swing.JFrame {
 
             for (int i = 0; i < lines.size(); i++) {
                 if (lines.get(i).startsWith("ID: " + userID + ",")) {
-                    // Assuming the username is always on the line following "Username:"
                     String usernameLine = lines.get(i + 1);
                     String username = usernameLine.trim().substring("Username: ".length());
-
                     // Remove trailing comma if present
                     if (username.endsWith(",")) {
                         username = username.substring(0, username.length() - 1);
@@ -410,7 +408,7 @@ public class Sale_Approval extends javax.swing.JFrame {
         dispose();
         Sale_Approval saleApproval = new Sale_Approval(userID);
         saleApproval.setVisible(true);
-        saleApproval.displaySales(); // Call the method to display the bookings
+        saleApproval.displaySales(); // Call the method to display the Sales
 
         jTable_Salestable.revalidate();
         jTable_Salestable.repaint();
