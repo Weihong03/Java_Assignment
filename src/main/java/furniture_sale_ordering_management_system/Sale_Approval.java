@@ -19,6 +19,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -52,7 +54,7 @@ public class Sale_Approval extends javax.swing.JFrame {
         // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+
     private Sale_Approval() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -446,6 +448,15 @@ public class Sale_Approval extends javax.swing.JFrame {
                     model.addRow(rowData);
                 }
             }
+            // Set cell alignment to center
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+            for (int i = 0; i < jTable_Salestable.getColumnCount(); i++) {
+                jTable_Salestable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
+            // Set header alignment to center
+            ((DefaultTableCellRenderer) jTable_Salestable.getTableHeader().getDefaultRenderer())
+                    .setHorizontalAlignment(JLabel.CENTER);
         } catch (IOException e) {
             e.printStackTrace();
         }
