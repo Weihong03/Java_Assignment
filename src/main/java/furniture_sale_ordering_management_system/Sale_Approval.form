@@ -65,9 +65,9 @@
                               <Component id="jButton_back" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton_approve" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton_reject" alignment="1" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton_approve" max="32767" attributes="0"/>
+                              <Component id="jButton_reject" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
@@ -104,9 +104,9 @@
                           <Component id="jButton_back" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton_approve" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton_reject" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton_approve" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButton_reject" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>

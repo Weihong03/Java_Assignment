@@ -11,6 +11,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -27,10 +30,8 @@ import javax.swing.table.TableRowSorter;
 public class Sale_Approval extends javax.swing.JFrame {
 
     private String userID;
+    private static final String BOOKING_FILE_PATH = "Data/Sales_Quotation.txt";
 
-    /**
-     * Creates new form ManageBooking
-     */
     public Sale_Approval(String userID) {
         this.userID = userID;
 
@@ -199,9 +200,9 @@ public class Sale_Approval extends javax.swing.JFrame {
                                 .addComponent(jButton_delete))
                             .addComponent(jButton_back))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_approve, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_reject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_approve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_reject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(72, 72, 72))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
@@ -229,9 +230,9 @@ public class Sale_Approval extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addComponent(jButton_back))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton_approve)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_reject)))
+                        .addComponent(jButton_approve, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_reject, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(186, 186, 186))
         );
 
@@ -266,9 +267,6 @@ public class Sale_Approval extends javax.swing.JFrame {
             int Amount = Integer.parseInt(jTable_Salestable.getValueAt(selectedRowIndex, 1).toString().replace("RM", ""));
             String Date = jTable_Salestable.getValueAt(selectedRowIndex, 2).toString();
             String Salesperson = jTable_Salestable.getValueAt(selectedRowIndex, 3).toString();
-            String Confirmation = jTable_Salestable.getValueAt(selectedRowIndex, 4).toString();
-            String Approved_by = jTable_Salestable.getValueAt(selectedRowIndex, 5).toString();
-            String Invoice_generated = jTable_Salestable.getValueAt(selectedRowIndex, 6).toString();
 
             // Create an instance of ModifyBooking and pass the selected data
             ModifySales modifySales = new ModifySales(ID, Amount, Date, Salesperson, userID);
@@ -284,7 +282,7 @@ public class Sale_Approval extends javax.swing.JFrame {
     private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
         // Get the selected row from your table or list
         int selectedRow = jTable_Salestable.getSelectedRow();
-        
+
         // Read the contents of the file into memory
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("Data/Sales_Quotation.txt"))) {
@@ -332,12 +330,49 @@ public class Sale_Approval extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_searchActionPerformed
 
     private void jButton_approveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_approveActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = jTable_Salestable.getSelectedRow();
+
+        if (selectedRow != -1) {
+            String ID = jTable_Salestable.getValueAt(selectedRow, 0).toString();
+            modifyConfirmation(ID, "Approved");
+            JOptionPane.showMessageDialog(this, "Confirmation Status updated successfully.");
+            // Refresh the UI
+            refreshTable();
+        }
     }//GEN-LAST:event_jButton_approveActionPerformed
 
     private void jButton_rejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_rejectActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = jTable_Salestable.getSelectedRow();
+
+        if (selectedRow != -1) {
+            String ID = jTable_Salestable.getValueAt(selectedRow, 0).toString();
+            modifyConfirmation(ID, "Rejected");
+            JOptionPane.showMessageDialog(this, "Confirmation Status updated successfully.");
+            // Refresh the UI
+            refreshTable();
+        }
     }//GEN-LAST:event_jButton_rejectActionPerformed
+
+    private boolean modifyConfirmation(String ID, String Confirmation) {
+        try {
+            Path inputFile = Path.of(BOOKING_FILE_PATH);
+
+            List<String> lines = Files.readAllLines(inputFile, StandardCharsets.UTF_8);
+
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (line.startsWith("ID: " + ID + ",")) {
+                    lines.set(i + 4, "Confirmation: " + Confirmation + ",");
+                    Files.write(inputFile, lines, StandardCharsets.UTF_8);
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
     private void refreshTable() {
         // Clear the existing data from the table

@@ -170,6 +170,7 @@ public class ModifySales extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel10.setText("ID:");
 
+        jTextField_ID.setEditable(false);
         jTextField_ID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTextField_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,6 +294,10 @@ public class ModifySales extends javax.swing.JFrame {
 
         if (isModified) {
             JOptionPane.showMessageDialog(this, "Quotation modified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            Sale_Approval salesApproval = new Sale_Approval(userID);
+            salesApproval.setVisible(true);
+            salesApproval.displaySales();
         } else {
             JOptionPane.showMessageDialog(this, "Failed to modify the quotation. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
         }
