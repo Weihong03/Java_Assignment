@@ -283,14 +283,8 @@ public class Sale_Approval extends javax.swing.JFrame {
 
     private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
         // Get the selected row from your table or list
-        int selectedRow = jTable_Salestable.getSelectedRow(); // Replace this with your actual logic to retrieve the selected row
-
-        // Check if a row is selected
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
-            return;
-        }
-
+        int selectedRow = jTable_Salestable.getSelectedRow();
+        
         // Read the contents of the file into memory
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("Data/Sales_Quotation.txt"))) {
@@ -305,7 +299,7 @@ public class Sale_Approval extends javax.swing.JFrame {
 
         // Calculate the line indices of the selected row's data
         int startIndex = selectedRow * 9; // Each data block has 9 lines
-        int endIndex = startIndex + 8;
+        int endIndex = Math.min(startIndex + 8, lines.size() - 1);
 
         // Check if the selected row is within the bounds of the file
         if (startIndex >= 0 && endIndex < lines.size()) {
