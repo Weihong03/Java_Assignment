@@ -353,6 +353,32 @@ public class Sale_Approval extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_rejectActionPerformed
 
+    private String getUsernameFromID(String userID) {
+        try {
+            Path inputFile = Path.of("Data/Officer_Salesperson.txt");
+
+            List<String> lines = Files.readAllLines(inputFile, StandardCharsets.UTF_8);
+
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).startsWith("ID: " + userID + ",")) {
+                    // Assuming the username is always on the line following "Username:"
+                    String usernameLine = lines.get(i + 1);
+                    String username = usernameLine.trim().substring("Username: ".length());
+
+                    // Remove trailing comma if present
+                    if (username.endsWith(",")) {
+                        username = username.substring(0, username.length() - 1);
+                    }
+                    return username;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null; // Return null if not found
+    }
+
     private boolean modifyConfirmation(String ID, String Confirmation) {
         try {
             Path inputFile = Path.of(BOOKING_FILE_PATH);
@@ -362,7 +388,9 @@ public class Sale_Approval extends javax.swing.JFrame {
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 if (line.startsWith("ID: " + ID + ",")) {
+                    String username = getUsernameFromID(userID);
                     lines.set(i + 4, "Confirmation: " + Confirmation + ",");
+                    lines.set(i + 5, "Officer: " + username + ",");
                     Files.write(inputFile, lines, StandardCharsets.UTF_8);
                     return true;
                 }
