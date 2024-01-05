@@ -52,7 +52,7 @@ public class Sale_Approval extends javax.swing.JFrame {
         // Set the default close operation
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
+    
     private Sale_Approval() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -431,7 +431,9 @@ public class Sale_Approval extends javax.swing.JFrame {
                             String[] parts = line.split(": ", 2);
                             if (parts.length == 2) {
                                 // Remove trailing comma if present
-                                rowData[i] = parts[1].replaceAll(",\\s*$", "");
+                                String value = parts[1].replaceAll(",\\s*$", "");
+                                // Check if the data is "Default" and set to empty if true
+                                rowData[i] = "Default".equals(value) ? "-" : value;
                             } else {
                                 // Handle unexpected line format
                                 rowData[i] = " ";
